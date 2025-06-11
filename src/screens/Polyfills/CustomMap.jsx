@@ -18,7 +18,7 @@ const exampleCode = `
 const CustomMap = () => {
 	return (
 		<>
-			<div className="h-[500px] flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs">
+			<div className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs">
 			
 			
 			

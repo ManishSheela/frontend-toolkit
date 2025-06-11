@@ -50,7 +50,7 @@ emitter.emit('hello', 'This should not call greet');
 const EventEmitter = () => {
 	return (
 		<>
-			<div className="h-[500px] flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs text-white text-sm">
+			<div className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs text-white text-sm">
 				<p>
 					<strong>Explanation:</strong>
 				</p>

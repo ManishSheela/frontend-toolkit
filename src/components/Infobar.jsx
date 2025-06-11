@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 
 const InfoBar = () => {
 	const { title } = useParams();
-	const header = title?.split("-").join(" ");
+	const header = title?.split("-").join(" ") || 'Homepage';
 
 	return (
 		<div className="flex w-full justify-between items-center py-2 px-4 border-b shadow-sm">

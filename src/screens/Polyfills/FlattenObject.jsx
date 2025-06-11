@@ -23,7 +23,7 @@ console.log(flattenObj(obj)); // { a: 1, b: 2, 'c.d': 1, 'c.e': 2 }
 const FlattenObject = () => {
 	return (
 		<>
-			<div className="h-[500px] flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs"></div>
+			<div className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs"></div>
 			<CodeDisplay codeString={exampleCode} />
 		</>
 	);

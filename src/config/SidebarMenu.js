@@ -53,14 +53,18 @@ export const SidebarMenu = [
 				title: "Flatten Object",
 				navigate: "flatten-object",
 			},
-
 			{
-				title: "Object Comparison",
-				navigate: "object-comparison",
+				title: "Deep Clone",
+				navigate: "deep-clone",
 			},
+
 			{
 				title: "Event Emitter",
 				navigate: "event-emitter",
+			},
+			{
+				title: "isEqual",
+				navigate: "is-equal",
 			},
 		],
 	},

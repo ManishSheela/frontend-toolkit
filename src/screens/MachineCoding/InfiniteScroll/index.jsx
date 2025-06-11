@@ -28,7 +28,7 @@ const InfiniteScroll = () => {
   return (
     <div
       onScroll={handleScroll}
-      className="h-[500px] flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs"
+      className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs"
     >
       {data.map((item, index) => (
         <div key={index} className="bg-slate-100 rounded-sm p-2 text-black">
@@ -62,7 +62,7 @@ const InfiniteScroll = () => {
 		<>
 			<div
 				onScroll={handleScroll}
-				className="h-[500px] flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs"
+				className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs"
 			>
 				{data.map((item, index) => (
 					<div key={index} className="bg-slate-100 rounded-sm p-2 text-black">
