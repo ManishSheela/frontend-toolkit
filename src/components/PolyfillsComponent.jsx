@@ -8,6 +8,7 @@ import FlattenArray from "../screens/Polyfills/FlattenArray";
 import FlattenObject from "../screens/Polyfills/FlattenObject";
 import EventEmitter from "../screens/Polyfills/EventEmitter";
 import DeepClone from "../screens/Polyfills/DeepClone";
+import isEqual from "../screens/Polyfills/isEqual";
 
 const polyfillComponents = {
 	"custom-map": CustomMap,
@@ -16,6 +17,7 @@ const polyfillComponents = {
 	"flatten-array": FlattenArray,
 	"flatten-object": FlattenObject,
 	"deep-clone": DeepClone,
+	"is-equal": isEqual,
 	"event-emitter": EventEmitter,
 };
 
