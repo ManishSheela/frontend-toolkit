@@ -9,6 +9,7 @@ import FlattenObject from "../screens/Polyfills/FlattenObject";
 import EventEmitter from "../screens/Polyfills/EventEmitter";
 import DeepClone from "../screens/Polyfills/DeepClone";
 import isEqual from "../screens/Polyfills/isEqual";
+import SetTimeout from "../screens/Polyfills/SetTimeout";
 
 const polyfillComponents = {
 	"custom-map": CustomMap,
@@ -19,6 +20,7 @@ const polyfillComponents = {
 	"deep-clone": DeepClone,
 	"is-equal": isEqual,
 	"event-emitter": EventEmitter,
+	"set-timeout": SetTimeout,
 };
 
 const PolyfillsComponent = () => {

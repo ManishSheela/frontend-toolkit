@@ -27,6 +27,22 @@ export const SidebarMenu = [
 				title: "Pagination",
 				navigate: "pagination",
 			},
+			{
+				title: "Tic Tac Toe",
+				navigate: "tic-tac-toe",
+			},
+			{
+				title: "AutoComplete/Typehead",
+				navigate: "auto-complete",
+			},
+			{
+				title: "Memory Game",
+				navigate: "memory-game",
+			},
+			{
+				title: "Stopwatch",
+				navigate: "stop-watch",
+			},
 		],
 	},
 	{
@@ -65,6 +81,10 @@ export const SidebarMenu = [
 			{
 				title: "isEqual",
 				navigate: "is-equal",
+			},
+			{
+				title: "setTimout",
+				navigate: "set-timeout",
 			},
 		],
 	},
