@@ -1,21 +1,20 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./components/sidebar/Sidebar";
-import InfoBar from "./components/Infobar";
-import PreviewContainer from "./components/PreviewContainer";
+import InfoBar from "./components/molecules/Infobar";
+import Loader from "./components/atoms/Loader";
+import LearningLayout from "./components/organisms/LearningLayout";
+import ContentArea from "./components/organisms/ContentArea";
 
 function App() {
 	return (
-		<div className="flex h-screen w-screen">
-			<Sidebar />
-			<div className="w-full h-screen flex flex-col">
-				<InfoBar />
-				<div className="p-4 overflow-y-auto">
-					<PreviewContainer>
-						<Outlet />
-					</PreviewContainer>
-				</div>
-			</div>
-		</div>
+		<LearningLayout sidebar={<Sidebar />} header={<InfoBar />}>
+			<ContentArea>
+				<Suspense fallback={<Loader />}>
+					<Outlet />
+				</Suspense>
+			</ContentArea>
+		</LearningLayout>
 	);
 }
 
