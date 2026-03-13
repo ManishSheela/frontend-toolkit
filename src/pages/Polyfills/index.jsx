@@ -1,8 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { lazy } from "react";
 import { useParams } from "react-router-dom";
-import NotFound from "../NotFound";
-
 const CustomMap = lazy(() => import("./CustomMap"));
 const CustomFilter = lazy(() => import("./CustomFilter"));
 const CustomReduce = lazy(() => import("./CustomReduce"));
@@ -11,9 +9,7 @@ const FlattenObject = lazy(() => import("./FlattenObject"));
 const EventEmitter = lazy(() => import("./EventEmitter"));
 const DeepClone = lazy(() => import("./DeepClone"));
 const IsEqual = lazy(() => import("./isEqual"));
-const SetTimeoutPolyfill = lazy(
-	() => import("./SetTimeout"),
-);
+const SetTimeoutPolyfill = lazy(() => import("./SetTimeout"));
 
 const polyfillComponents = {
 	"custom-map": CustomMap,
@@ -30,7 +26,7 @@ const polyfillComponents = {
 const Polyfills = () => {
 	const { title } = useParams();
 	const Component = polyfillComponents[title];
-	return Component ? <Component /> : <NotFound />;
+	return Component && <Component />;
 };
 
 export default Polyfills;

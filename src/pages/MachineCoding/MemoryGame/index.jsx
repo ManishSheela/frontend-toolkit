@@ -1,7 +1,9 @@
 import { lazy, useEffect, useState } from "react";
 import LearningBox from "@/src/components/organisms/LearningBox";
 
-const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
+const CodeDisplay = lazy(
+	() => import("@/src/components/molecules/CodeDisplay"),
+);
 
 const exampleCode = `
 function Shuffle(data) {
@@ -89,10 +91,7 @@ const MemoryGame = () => {
 		}
 	}, [flipIndexs, cards]);
 
-	return (
-		<>
-			<LearningBox>
-				{isStarted ? (
+	return ({isStarted ? (
 					<div className="flex flex-col items-center gap-4">
 						<div
 							style={{ gridTemplateColumns: \`repeat(\${inputN}, 1fr)\` }}
@@ -132,11 +131,8 @@ const MemoryGame = () => {
 						</div>
 					</>
 				)}
-			</div>
-		</>
 	);
 };
-
 export default MemoryGame;
 `.trim();
 
@@ -170,7 +166,7 @@ const Card = ({ symbol, isFlipped, isMatched, onClick }) => (
 		onClick={onClick}
 		className={`w-16 h-16 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer rounded ${
 			isFlipped || isMatched
-				? "bg-blue-500 text-white"
+				? "bg-primary text-white"
 				: "bg-gray-600 text-white"
 		}`}
 	>
@@ -231,7 +227,7 @@ const MemoryGame = () => {
 
 	return (
 		<>
-			<LearningBox>
+			<LearningBox className={"gap-4"}>
 				{isStarted ? (
 					<div className="flex flex-col items-center gap-4">
 						<div

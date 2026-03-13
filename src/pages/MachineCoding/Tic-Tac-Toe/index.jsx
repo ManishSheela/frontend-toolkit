@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { lazy, useState } from "react";
 import LearningBox from "@/src/components/organisms/LearningBox";
 
-const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
+const CodeDisplay = lazy(
+	() => import("@/src/components/molecules/CodeDisplay"),
+);
 
 const exampleCode = `
 const TicTacToe = () => {
@@ -122,17 +124,17 @@ const TicTacToe = () => {
 
 	return (
 		<>
-			<LearningBox className="text-white">
+			<LearningBox className="gap-4">
 				<h1>Tic Tac Toe</h1>
 				{winner ? (
 					<div>Winner is : {winner}</div>
 				) : (
 					<div>Next Turn: {xTurn ? "X" : "O"}</div>
 				)}
-				<Button onClick={reset} className="text-black w-52 m-auto">
+				<Button onClick={reset} className="text-black w-52">
 					Reset
 				</Button>
-				<div className="grid grid-cols-3 grid-rows-3 gap-1 mt-4">
+				<div className="grid grid-cols-3 grid-rows-3 gap-1">
 					{board.map((item, index) => (
 						<div
 							key={index}

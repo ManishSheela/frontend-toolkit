@@ -10,7 +10,7 @@ const LearningBox = ({ className, children }) => {
 	return (
 		<div
 			className={cn(
-				"flex flex-col w-full h-full min-h-0 rounded-sm p-4 bg-stone-700 text-gray-50 text-center overflow-y-auto",
+				"flex flex-col w-full h-full min-h-0 rounded-sm p-4 bg-stone-700 text-center overflow-y-auto",
 				className,
 			)}
 		>

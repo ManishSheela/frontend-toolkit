@@ -4,6 +4,7 @@ import App from "../App";
 import Home from "../pages/Home";
 import MachineCoding from "../pages/MachineCoding";
 import Polyfills from "../pages/Polyfills";
+import NotFound from "../pages/NotFound";
 
 const IRoutes = () => {
 	return (
@@ -14,6 +15,7 @@ const IRoutes = () => {
 					<Route path={PATH_NAME.MACHINE_CODING} element={<MachineCoding />} />
 					<Route path={PATH_NAME.POLYFILLS} element={<Polyfills />} />
 				</Route>
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</BrowserRouter>
 	);

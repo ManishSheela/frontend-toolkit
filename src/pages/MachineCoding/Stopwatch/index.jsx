@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
+import LearningBox from "@/src/components/organisms/LearningBox";
 import { lazy, useEffect, useState } from "react";
 
-const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
+const CodeDisplay = lazy(
+	() => import("@/src/components/molecules/CodeDisplay"),
+);
 
 const exampleCode = `
 
@@ -99,10 +102,10 @@ const Stopwatch = () => {
 	}, [isRunning]);
 	return (
 		<>
-			<div className="h-auto flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs text-gray-50 text-center justify-center">
+			<LearningBox className="gap-4">
 				<h1 className="text-2xl font-bold">Stopwatch</h1>
 				<h3>{formatTime(timer)}</h3>
-				<div className="flex flex-row items-center gap-2 m-auto">
+				<div className="flex flex-row items-center gap-2 justify-center">
 					<Button onClick={handleStartPause} className="text-black">
 						{isRunning ? "Pause" : "Start"}
 					</Button>
@@ -110,7 +113,7 @@ const Stopwatch = () => {
 						Reset
 					</Button>
 				</div>
-			</div>
+			</LearningBox>
 			<CodeDisplay codeString={exampleCode} />
 		</>
 	);

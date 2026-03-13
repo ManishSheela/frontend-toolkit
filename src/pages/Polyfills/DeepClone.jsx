@@ -1,7 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
+import LearningBox from "@/src/components/organisms/LearningBox";
 import { lazy } from "react";
 
-const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
+const CodeDisplay = lazy(
+	() => import("@/src/components/molecules/CodeDisplay"),
+);
 
 const exampleCode = `
 function deepClone(value, weakMap = new WeakMap()){
@@ -41,7 +44,7 @@ function deepClone(value, weakMap = new WeakMap()){
 const DeepClone = () => {
 	return (
 		<>
-			<div className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs text-white text-sm">
+			<LearningBox className="flex-col text-left text-white text-sm">
 				<p>
 					<strong>Explanation:</strong>
 				</p>
@@ -84,7 +87,7 @@ const DeepClone = () => {
 						and handles complex nested structures.
 					</li>
 				</ul>
-			</div>
+			</LearningBox>
 
 			<CodeDisplay codeString={exampleCode} />
 		</>

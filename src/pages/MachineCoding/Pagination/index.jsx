@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import PaginationComponent, { ITEMS_PER_PAGE } from "./PaginationComponent";
+import LearningBox from "@/src/components/organisms/LearningBox";
+import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 
 const Pagination = () => {
 	const [data, setData] = useState([]);
@@ -23,7 +25,7 @@ const Pagination = () => {
 	console.log({ startProductIndex, endProductIndex });
 	return (
 		<>
-			<div className="flex flex-col gap-2">
+			<LearningBox>
 				<PaginationComponent
 					currentPage={currentPage}
 					setCurrentPage={setCurrentPage}
@@ -34,7 +36,8 @@ const Pagination = () => {
 						return <ProductCard key={product?.id} product={product} />;
 					})}
 				</div>
-			</div>
+			</LearningBox>
+			<CodeDisplay codeString={`dafjdj`} />
 		</>
 	);
 };

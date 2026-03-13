@@ -1,7 +1,10 @@
 import { lazy, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import LearningBox from "@/src/components/organisms/LearningBox";
 
-const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
+const CodeDisplay = lazy(
+	() => import("@/src/components/molecules/CodeDisplay"),
+);
 
 const exampleCode = `
 const MouseHoldCounterApp = () => {
@@ -96,7 +99,7 @@ const MouseHoldCounterApp = () => {
 
 	return (
 		<>
-			<div className="h-fit flex flex-row justify-center items-center gap-4 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs">
+			<LearningBox className="flex flex-row justify-center items-center gap-4 ">
 				<Button
 					onMouseDown={() => handleMouseDown("dec")}
 					onMouseUp={clearMouseHold}
@@ -118,7 +121,7 @@ const MouseHoldCounterApp = () => {
 				>
 					+
 				</Button>
-			</div>
+			</LearningBox>
 			<CodeDisplay codeString={exampleCode} />
 		</>
 	);

@@ -28,7 +28,9 @@ const PaginationComponent = ({
 				<Button
 					key={page}
 					onClick={() => handlePageChange(page)}
-					className={currentPage === page ? "bg-blue-400 text-white" : ""}
+					className={
+						currentPage === page ? "bg-primary text-white" : "text-black"
+					}
 				>
 					{page}
 				</Button>

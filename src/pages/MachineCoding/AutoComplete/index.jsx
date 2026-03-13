@@ -1,6 +1,9 @@
+import LearningBox from "@/src/components/organisms/LearningBox";
 import { lazy, useState } from "react";
 
-const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
+const CodeDisplay = lazy(
+	() => import("@/src/components/molecules/CodeDisplay"),
+);
 
 const exampleCode = `
 const AutoComplete = ({
@@ -38,17 +41,16 @@ const AutoComplete = ({
 	);
 
 	return (
-		<>
-			<div className="h-auto flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs text-gray-50 text-center justify-center">
-				<div className="flex flex-row gap-2 items-center justify-center">
+		  <>
+				<div className="flex gap-2 flex-row w-full items-center justify-center">
 					<input
 						value={query}
 						onChange={handleChangeQuery}
-						className="text-black p-2 rounded-sm"
+						className="text-black p-2 rounded-md w-full"
 						placeholder="Search for a fruit…"
 					/>
 					<button
-						className="text-black p-2 rounded-md"
+						className="text-black p-2 rounded-tr-md rounded-br-md"
 						onClick={() => setQuery("")}
 					>
 						Clear
@@ -68,8 +70,7 @@ const AutoComplete = ({
 						))}
 					</ul>
 				)}
-			</div>
-		</>
+			</>
 	);
 };
 
@@ -107,21 +108,21 @@ const AutoComplete = ({
 	};
 
 	const filteredSuggestion = suggestions.filter((sugg) =>
-		sugg.toLowerCase().includes(query.toLowerCase())
+		sugg.toLowerCase().includes(query.toLowerCase()),
 	);
 
 	return (
 		<>
-			<div className="h-auto flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs text-gray-50 text-center justify-center">
-				<div className="flex flex-row gap-2 items-center justify-center">
+			<LearningBox>
+				<div className="flex gap-2 flex-row w-full items-center justify-center">
 					<input
 						value={query}
 						onChange={handleChangeQuery}
-						className="text-black p-2 rounded-sm"
+						className="text-black p-2 rounded-md w-full"
 						placeholder="Search for a fruit…"
 					/>
 					<button
-						className="text-black p-2 rounded-md"
+						className="text-black p-2 rounded-tr-md rounded-br-md"
 						onClick={() => setQuery("")}
 					>
 						Clear
@@ -141,7 +142,7 @@ const AutoComplete = ({
 						))}
 					</ul>
 				)}
-			</div>
+			</LearningBox>
 
 			<CodeDisplay codeString={exampleCode} />
 		</>
