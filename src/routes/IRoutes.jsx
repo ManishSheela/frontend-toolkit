@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import MachineCoding from "../pages/MachineCoding";
 import Polyfills from "../pages/Polyfills";
 import NotFound from "../pages/NotFound";
+import Hooks from "../pages/Hooks";
 
 const IRoutes = () => {
 	return (
@@ -14,8 +15,9 @@ const IRoutes = () => {
 					<Route index element={<Home />} />
 					<Route path={PATH_NAME.MACHINE_CODING} element={<MachineCoding />} />
 					<Route path={PATH_NAME.POLYFILLS} element={<Polyfills />} />
+					<Route path={PATH_NAME.HOOKS} element={<Hooks />} />
+					<Route path="*" element={<NotFound />} />
 				</Route>
-				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</BrowserRouter>
 	);

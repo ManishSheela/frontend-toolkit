@@ -9,7 +9,8 @@ const FlattenObject = lazy(() => import("./FlattenObject"));
 const EventEmitter = lazy(() => import("./EventEmitter"));
 const DeepClone = lazy(() => import("./DeepClone"));
 const IsEqual = lazy(() => import("./isEqual"));
-const SetTimeoutPolyfill = lazy(() => import("./SetTimeout"));
+const SetTimeout = lazy(() => import("./SetTimeout"));
+const Promise = lazy(() => import("./Promise"));
 
 const polyfillComponents = {
 	"custom-map": CustomMap,
@@ -20,7 +21,8 @@ const polyfillComponents = {
 	"deep-clone": DeepClone,
 	"is-equal": IsEqual,
 	"event-emitter": EventEmitter,
-	"set-timeout": SetTimeoutPolyfill,
+	"set-timeout": SetTimeout,
+	promise: Promise,
 };
 
 const Polyfills = () => {

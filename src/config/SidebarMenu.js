@@ -54,14 +54,12 @@ export const SidebarMenu = [
 			{
 				title: "Memory Game",
 				navigate: "memory-game",
-				description:
-					"Flip cards to match pairs in a simple memory card game.",
+				description: "Flip cards to match pairs in a simple memory card game.",
 			},
 			{
 				title: "Stopwatch",
 				navigate: "stop-watch",
-				description:
-					"Stopwatch with start, pause and reset using intervals.",
+				description: "Stopwatch with start, pause and reset using intervals.",
 			},
 		],
 	},
@@ -87,8 +85,7 @@ export const SidebarMenu = [
 			{
 				title: "Flatten Array",
 				navigate: "flatten-array",
-				description:
-					"Flatten deeply nested arrays into a single-level array.",
+				description: "Flatten deeply nested arrays into a single-level array.",
 			},
 			{
 				title: "Flatten Object",
@@ -99,8 +96,7 @@ export const SidebarMenu = [
 			{
 				title: "Deep Clone",
 				navigate: "deep-clone",
-				description:
-					"Deeply clone complex objects, arrays and dates safely.",
+				description: "Deeply clone complex objects, arrays and dates safely.",
 			},
 
 			{
@@ -119,6 +115,42 @@ export const SidebarMenu = [
 				navigate: "set-timeout",
 				description:
 					"Polyfill setTimeout/clearTimeout using requestAnimationFrame.",
+			},
+			{
+				title: "Promise",
+				navigate: "promise",
+				description:
+					"we implment our custom Promise using setTimeout and a simple executor.",
+			},
+		],
+	},
+	{
+		title: "Hooks",
+		navigate: "hooks",
+		items: [
+			{
+				title: "usePrevious",
+				navigate: "use-previous",
+				description:
+					"Custom hook to store the previous value of a state variable.",
+			},
+			{
+				title: "useFirstRender",
+				navigate: "use-first-render",
+				description:
+					"Custom hook to determine if the current render is the first render of the component.",
+			},
+			{
+				title: "useIsIdle",
+				navigate: "use-is-idle",
+				description:
+					"Custom hook to detect if the user is idle (no mouse or keyboard activity) for a specified timeout period.",
+			},
+			{
+				title: "useAsync",
+				navigate: "use-async",
+				description:
+					"Custom hook to handle asynchronous operations with loading and error states.",
 			},
 		],
 	},

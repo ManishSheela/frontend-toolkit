@@ -15,7 +15,7 @@ const InfoBar = () => {
 
 	return (
 		<div className="flex flex-col w-full  bg-gray-50  py-2 px-4 border-b ">
-			<h2 className="text-2xl font-bold capitalize">{header}</h2>
+			<h2 className="text-2xl font-bold">{header}</h2>
 			<p className="text-gray-500 text-sm">{description}</p>
 		</div>
 	);
