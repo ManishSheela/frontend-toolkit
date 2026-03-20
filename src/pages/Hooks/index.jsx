@@ -6,6 +6,9 @@ const HooksComponents = {
 	"use-first-render": lazy(() => import("./UseFirstRenderHook")),
 	"use-is-idle": lazy(() => import("./UseIsIdleHook")),
 	'use-async': lazy(() => import("./UseAsyncHook")),
+	'use-debounce': lazy(() => import("./UseDebounceHook")),
+	'use-throttle': lazy(() => import("./useThrottleHook")),
+	'use-responsive': lazy(() => import("./useResponsiveHook")),
 };
 
 const Hooks = () => {

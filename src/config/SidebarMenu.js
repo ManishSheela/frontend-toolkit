@@ -152,6 +152,24 @@ export const SidebarMenu = [
 				description:
 					"Custom hook to handle asynchronous operations with loading and error states.",
 			},
+			{
+				title: "useDebounce",
+				navigate: "use-debounce",
+				description:
+					"Custom hook to debounce a function call and delay its execution.",
+			},
+			{
+				title: "useThrottle",
+				navigate: "use-throttle",
+				description:
+					"Custom hook to throttle a function call and limit its execution frequency.",
+			},
+			{
+				title: "useResponsive",
+				navigate: "use-responsive",
+				description:
+					"Custom hook to handle responsive design logic based on screen size.",
+			},
 		],
 	},
 ];
