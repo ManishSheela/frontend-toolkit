@@ -53,8 +53,8 @@ const useThrottle = (value, delay) => {
 	return throttleValue;
 };
 
-const useThrottleHook = () => {
+const UseThrottleHook = () => {
 	return <div></div>;
 };
 
-export default useThrottleHook;
+export default UseThrottleHook;
