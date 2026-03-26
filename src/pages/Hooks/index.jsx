@@ -7,7 +7,6 @@ const HooksComponents = {
 	"use-is-idle": lazy(() => import("./UseIsIdleHook")),
 	'use-async': lazy(() => import("./UseAsyncHook")),
 	'use-debounce': lazy(() => import("./UseDebounceHook")),
-	'use-throttle': lazy(() => import("./UseThrottleHook")),
 	'use-responsive': lazy(() => import("./UseResponsiveHook")),
 };
 

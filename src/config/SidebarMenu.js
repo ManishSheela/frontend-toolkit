@@ -159,12 +159,6 @@ export const SidebarMenu = [
 					"Custom hook to debounce a function call and delay its execution.",
 			},
 			{
-				title: "useThrottle",
-				navigate: "use-throttle",
-				description:
-					"Custom hook to throttle a function call and limit its execution frequency.",
-			},
-			{
 				title: "useResponsive",
 				navigate: "use-responsive",
 				description:
