@@ -11,6 +11,7 @@ const TicTacToe = lazy(() => import("./Tic-Tac-Toe"));
 const AutoComplete = lazy(() => import("./AutoComplete"));
 const MemoryGame = lazy(() => import("./MemoryGame"));
 const Stopwatch = lazy(() => import("./Stopwatch"));
+const TrafficLight = lazy(() => import("./TrafficLight"));
 
 const machineCodingComponents = {
 	"multi-step-form": MultiStepForm,
@@ -23,6 +24,7 @@ const machineCodingComponents = {
 	"auto-complete": AutoComplete,
 	"memory-game": MemoryGame,
 	"stop-watch": Stopwatch,
+	"traffic-light": TrafficLight,
 };
 
 const MachineCoding = () => {

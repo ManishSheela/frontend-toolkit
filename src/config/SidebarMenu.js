@@ -61,6 +61,12 @@ export const SidebarMenu = [
 				navigate: "stop-watch",
 				description: "Stopwatch with start, pause and reset using intervals.",
 			},
+			{
+				title: "Traffic Light",
+				navigate: "traffic-light",
+				description:
+					"Implement traffic light with 3 states: red, yellow, green.",
+			},
 		],
 	},
 	{
