@@ -165,10 +165,32 @@ export const SidebarMenu = [
 					"Custom hook to debounce a function call and delay its execution.",
 			},
 			{
+				title: "useThrottle",
+				navigate: "use-throttle",
+				description:
+					"Custom hook to throttle a function call to limit its execution rate.",
+			},
+			{
 				title: "useResponsive",
 				navigate: "use-responsive",
 				description:
 					"Custom hook to handle responsive design logic based on screen size.",
+			},
+			{
+				title: "useClickOutside",
+				navigate: "use-click-outside",
+				description:
+					"Custom hook to detect clicks outside of a specified element.",
+			},
+			{
+				title: "useWindowSize",
+				navigate: "use-window-size",
+				description: "Custom hook to get window size.",
+			},
+			{
+				title: "useKeyPress",
+				navigate: "use-key-press",
+				description: "Custom hook to detect key press.",
 			},
 		],
 	},
