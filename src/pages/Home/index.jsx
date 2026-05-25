@@ -36,10 +36,28 @@ const Home = () => {
 					implementations. Each example includes a working demo and the
 					underlying source code.
 				</p>
+				<div className="mt-6 flex flex-col md:flex-row items-center gap-4 bg-blue-50 p-4 rounded-lg border border-blue-100">
+					<div className="flex-1 text-center md:text-left">
+						<h3 className="text-sm font-semibold text-primary mb-1">
+							Enjoying this toolkit?
+						</h3>
+						<p className="text-xs text-primary">
+							Give it a star on GitHub and share your feedback to help improve
+							the project!
+						</p>
+					</div>
+					<a
+						href="https://github.com/ManishSheela/frontend-toolkit"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap shadow-sm"
+					>
+						⭐ Star on GitHub
+					</a>
+				</div>
 			</div>
 		</div>
 	);
 };
 
 export default Home;
-

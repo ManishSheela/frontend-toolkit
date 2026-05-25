@@ -1,18 +1,21 @@
+import { Link } from "react-router-dom";
 import { SidebarMenu } from "@/src/config/SidebarMenu";
 import MenuItem from "./MenuItem";
 import { useState } from "react";
 
 const SidebarHeader = () => (
-	<div className="flex items-center space-x-2">
-		<div className="bg-black p-1 rounded-md">
+	<Link
+		to="/"
+		className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity"
+	>
+		<div className="bg-primary p-1 rounded-md">
 			<span role="img" aria-label="icon" className="text-white">
 				📄
 			</span>
 		</div>
-		<div>
-			<h2 className="text-lg font-semibold">Frontend Toolkit</h2>
-		</div>
-	</div>
+
+		<h2 className="text-lg font-semibold text-primary">Frontend Toolkit</h2>
+	</Link>
 );
 
 const Sidebar = () => {
