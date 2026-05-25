@@ -1,9 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
+import LearningBox from "@/src/components/organisms/LearningBox";
 
 const Promise = () => {
 	return (
 		<>
-			<div className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs text-white text-sm">
+			<LearningBox className="gap-2 shadow-xs text-white text-sm text-left">
 				<p>
 					<strong>Explanation:</strong>
 				</p>
@@ -40,7 +41,7 @@ const Promise = () => {
 						mechanism and is a functional polyfill.
 					</li>
 				</ul>
-			</div>
+			</LearningBox>
 
 			<CodeDisplay codeString={``} />
 		</>

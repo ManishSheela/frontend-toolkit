@@ -1,5 +1,6 @@
 // InfiniteScroll.jsx
 import { lazy, useState } from "react";
+import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
 
@@ -61,16 +62,16 @@ const InfiniteScroll = () => {
 
 	return (
 		<>
-			<div
+			<LearningBox
 				onScroll={handleScroll}
-				className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs"
+				className="gap-2 overflow-auto shadow-xs"
 			>
 				{data.map((item, index) => (
 					<div key={index} className="bg-slate-100 rounded-sm p-2 text-black">
 						{index + 1}
 					</div>
 				))}
-			</div>
+			</LearningBox>
 			<CodeDisplay codeString={exampleCode} />
 		</>
 	);

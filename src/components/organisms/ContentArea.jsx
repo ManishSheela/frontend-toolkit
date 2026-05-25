@@ -1,8 +1,13 @@
+import { ResizablePanelGroup } from "@/components/ui/resizable";
+
 const ContentArea = ({ children }) => {
 	return (
-		<div className="flex flex-col lg:flex-row w-full h-full min-h-0 gap-4  p-2 overflow-hidden">
+		<ResizablePanelGroup
+			direction="horizontal"
+			className="w-full h-full min-h-0 rounded-lg border p-2"
+		>
 			{children}
-		</div>
+		</ResizablePanelGroup>
 	);
 };
 

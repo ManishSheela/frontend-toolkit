@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { lazy } from "react";
+import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
 
@@ -48,7 +49,7 @@ setTimout(()=> console.log('working fine'), 1000)
 const SetTimeout = () => {
 	return (
 		<>
-			<div className="h-full flex flex-col gap-2 rounded-sm w-full p-4 bg-stone-700 overflow-auto shadow-xs text-white text-sm">
+			<LearningBox className="gap-2 shadow-xs text-white text-sm text-left">
 				<p>
 					<strong>Explanation:</strong>
 				</p>
@@ -85,7 +86,7 @@ const SetTimeout = () => {
 						mechanism and is a functional polyfill.
 					</li>
 				</ul>
-			</div>
+			</LearningBox>
 
 			<CodeDisplay codeString={exampleCode} />
 		</>
