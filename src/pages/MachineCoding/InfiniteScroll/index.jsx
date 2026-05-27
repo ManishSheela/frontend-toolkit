@@ -1,10 +1,11 @@
 // InfiniteScroll.jsx
 import { lazy, useState } from "react";
 import LearningBox from "@/src/components/organisms/LearningBox";
+import { useInfiniteScroll } from "../../Hooks/useInfiniteScrollHook";
 
-const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
-
-const Threshold = 20;
+const CodeDisplay = lazy(
+	() => import("@/src/components/molecules/CodeDisplay"),
+);
 
 const exampleCode = `
 import { useState } from "react";
@@ -46,19 +47,9 @@ export default InfiniteScroll;
 
 const InfiniteScroll = () => {
 	const [data, setData] = useState([...new Array(40)]);
-
-	const loadMore = () => {
-		setData((prev) => [...prev, ...new Array(10)]);
-	};
-
-	const handleScroll = (e) => {
-		const { scrollHeight, scrollTop, clientHeight } = e.target;
-		const remainingArea = scrollHeight - (scrollTop + clientHeight);
-
-		if (remainingArea < Threshold) {
-			loadMore();
-		}
-	};
+	const handleScroll = useInfiniteScroll(() =>
+		setData((prev) => [...prev, ...new Array(10)]),
+	);
 
 	return (
 		<>

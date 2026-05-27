@@ -147,18 +147,6 @@ export const SidebarMenu = [
 					"Custom hook to determine if the current render is the first render of the component.",
 			},
 			{
-				title: "useIsIdle",
-				navigate: "use-is-idle",
-				description:
-					"Custom hook to detect if the user is idle (no mouse or keyboard activity) for a specified timeout period.",
-			},
-			{
-				title: "useAsync",
-				navigate: "use-async",
-				description:
-					"Custom hook to handle asynchronous operations with loading and error states.",
-			},
-			{
 				title: "useDebounce",
 				navigate: "use-debounce",
 				description:
@@ -169,6 +157,18 @@ export const SidebarMenu = [
 				navigate: "use-throttle",
 				description:
 					"Custom hook to throttle a function call to limit its execution rate.",
+			},
+			{
+				title: "useIsIdle",
+				navigate: "use-is-idle",
+				description:
+					"Custom hook to detect if the user is idle (no mouse or keyboard activity) for a specified timeout period.",
+			},
+			{
+				title: "useAsync",
+				navigate: "use-async",
+				description:
+					"Custom hook to handle asynchronous operations with loading and error states.",
 			},
 			{
 				title: "useResponsive",
@@ -191,6 +191,18 @@ export const SidebarMenu = [
 				title: "useKeyPress",
 				navigate: "use-key-press",
 				description: "Custom hook to detect key press.",
+			},
+			{
+				title: "useUndoRedo",
+				navigate: "use-undo-redo",
+				description:
+					"Custom hook to keep track of the previous values of a state variable and allows you to undo or redo the state.",
+			},
+			{
+				title: "useInfiniteScroll",
+				navigate: "use-infinite-scroll",
+				description:
+					"Custom hook to implement an infinite scroll using event handlers.",
 			},
 		],
 	},
