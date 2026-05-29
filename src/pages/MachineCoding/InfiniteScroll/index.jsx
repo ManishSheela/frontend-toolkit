@@ -1,7 +1,7 @@
 // InfiniteScroll.jsx
 import { lazy, useState } from "react";
 import LearningBox from "@/src/components/organisms/LearningBox";
-import { useInfiniteScroll } from "../../Hooks/useInfiniteScrollHook";
+import { useInfiniteScroll } from "../../Hooks/UseInfiniteScrollHook";
 
 const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),

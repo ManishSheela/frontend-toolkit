@@ -9,6 +9,8 @@ export const useUndoRedo = (initialValues) => {
 		future: [],
 	});
 
+	console.log({ history });
+
 	const set = (value) => {
 		setHistory((prev) => ({
 			past: [...prev.past, prev.present],
@@ -48,7 +50,7 @@ export const useUndoRedo = (initialValues) => {
 	return { set, history, undo, redo };
 };
 
-const useUndoRedoHook = () => {
+const UseUndoRedoHook = () => {
 	const { set, history, undo, redo } = useUndoRedo("");
 	return (
 		<>
@@ -123,4 +125,4 @@ const useUndoRedoHook = () => {
 	);
 };
 
-export default useUndoRedoHook;
+export default UseUndoRedoHook;

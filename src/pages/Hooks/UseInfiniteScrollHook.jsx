@@ -24,7 +24,7 @@ export const useInfiniteScroll = (callback, Threshold = 20) => {
 	return handleScroll;
 };
 
-const useInfiniteScrollHook = () => {
+const UseInfiniteScrollHook = () => {
 	const [data, setData] = useState([...new Array(40)]);
 	const handleScroll = useInfiniteScroll(() => {
 		setData((prev) => [...prev, ...new Array(10)]);
@@ -71,4 +71,4 @@ const useInfiniteScrollHook = () => {
 	);
 };
 
-export default useInfiniteScrollHook;
+export default UseInfiniteScrollHook;

@@ -11,9 +11,9 @@ const HooksComponents = {
 	"use-click-outside": lazy(() => import("./UseClickOutsideHook")),
 	"use-window-size": lazy(() => import("./UseWindowSizeHook")),
 	"use-key-press": lazy(() => import("./UseKeyPressHook")),
-	"use-throttle": lazy(() => import("./useThrottleHook")),
+	"use-throttle": lazy(() => import("./UseThrottleHook")),
 	"use-undo-redo": lazy(() => import("./UseUndoRedoHook")),
-	"use-infinite-scroll": lazy(() => import("./useInfiniteScrollHook")),
+	"use-infinite-scroll": lazy(() => import("./UseInfiniteScrollHook")),
 };
 
 const Hooks = () => {
