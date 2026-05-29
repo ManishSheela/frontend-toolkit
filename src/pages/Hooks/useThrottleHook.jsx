@@ -46,7 +46,7 @@ export const useThrottle = (callback, delay = 500) => {
 	return throttleFn;
 };
 
-const useThrottleHook = () => {
+const UseThrottleHook = () => {
 	const [count, setCount] = useState(0);
 	const [inputValue, setInputValue] = useState("");
 	const throttledValue = useThrottleValue(inputValue, 5000);
@@ -100,4 +100,4 @@ const useThrottleHook = () => {
 	);
 };
 
-export default useThrottleHook;
+export default UseThrottleHook;

@@ -48,7 +48,7 @@ export const useUndoRedo = (initialValues) => {
 	return { set, history, undo, redo };
 };
 
-const useUndoRedoHook = () => {
+const UseUndoRedoHook = () => {
 	const { set, history, undo, redo } = useUndoRedo("");
 	return (
 		<>
@@ -123,4 +123,4 @@ const useUndoRedoHook = () => {
 	);
 };
 
-export default useUndoRedoHook;
+export default UseUndoRedoHook;
