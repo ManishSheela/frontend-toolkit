@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
-import { useEffect, useState } from "react";
 
 const CIRCLE_SIZE = 100;
 
@@ -127,11 +127,11 @@ const OverlappingCircles = () => {
 	return (
 		<>
 			<LearningBox className="gap-4">
+				<p className="text-white">Draw Circle here</p>
 				{circles.map((circle, index) => (
 					<Circle key={index} {...circle} />
 				))}
 			</LearningBox>
-
 			<CodeDisplay codeString={codeString} />
 		</>
 	);
@@ -262,7 +262,6 @@ const OverlappingCircles = () => {
 	}, []);
 
 	return (
-
 			<LearningBox className="gap-4">
 				{circles.map((circle, index) => (
 					<Circle key={index} {...circle} />
