@@ -5,20 +5,18 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
-const exampleCode = `
- Array.prototype.myReduce = function(callback, initialValue = this[0]){ 
-	 let acc = initialValue;
-	 for(let i = 0; i < this.length; i++){
-	    acc  = callback(acc, this[i], i);
-	 	}
+import pageSource from "./CustomReduce.jsx?raw";
+
+Array.prototype.myReduce = function (callback, initialValue = this[0]) {
+	let acc = initialValue;
+	for (let i = 0; i < this.length; i++) {
+		acc = callback(acc, this[i], i);
+	}
 	return acc;
- }
+};
 
- const arr = [1,2,3,4];
- const result = arr.myReduce((acc, curr)=> acc + curr, 0);
-
- console.log({result});
-`.trim();
+const inputArray = [1, 2, 3, 4];
+const outputSum = inputArray.myReduce((acc, curr) => acc + curr, 0);
 
 const CustomReduce = () => {
 	return (
@@ -91,8 +89,13 @@ const CustomReduce = () => {
 						result, such as calculating sums, products, or building objects.
 					</li>
 				</ul>
+				<p>
+					<strong>Live example:</strong>
+				</p>
+				<p>Input: {JSON.stringify(inputArray)}</p>
+				<p>Output (sum): {outputSum}</p>
 			</LearningBox>
-			<CodeDisplay codeString={exampleCode} />
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

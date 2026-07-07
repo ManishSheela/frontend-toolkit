@@ -1,6 +1,7 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useState } from "react";
+import pageSource from "./UseKeyPressHook.jsx?raw";
 
 const useKeyPress = (targetKey) => {
 	const [pressed, setPressed] = useState(false);
@@ -32,28 +33,7 @@ const UseKeyPressHook = () => {
 					{upKey ? "ArrowUp is pressed" : "Press ArrowUp"}
 				</p>
 			</LearningBox>
-			<CodeDisplay
-				codeString={`
-  const useKeyPress = (targetKey) => {
-	const [pressed, setPressed] = useState(false);
-
-	useEffect(() => {
-		const down = (e) => e.key === targetKey && setPressed(true);
-		const up = (e) => e.key === targetKey && setPressed(false);
-
-		window.addEventListener("keydown", down);
-		window.addEventListener("keyup", up);
-
-		return () => {
-			window.removeEventListener("keydown", down);
-			window.removeEventListener("keyup", up);
-		};
-	}, []);
-
-	return pressed;
-}; 
-  `}
-			/>
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

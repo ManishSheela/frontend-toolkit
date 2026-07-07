@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import PaginationComponent, { ITEMS_PER_PAGE } from "./PaginationComponent";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
+import pageSource from "./index.jsx?raw";
 
 const Pagination = () => {
 	const [data, setData] = useState([]);
@@ -37,7 +38,7 @@ const Pagination = () => {
 					})}
 				</div>
 			</LearningBox>
-			<CodeDisplay codeString={`dafjdj`} />
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

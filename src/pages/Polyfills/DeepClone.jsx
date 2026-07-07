@@ -6,40 +6,44 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
-const exampleCode = `
-function deepClone(value, weakMap = new WeakMap()){
-  if(value === null || typeof value !== 'object') return value;
+import pageSource from "./DeepClone.jsx?raw";
 
-  // handle circular reference
-  if(weakMap.has(value)) return weakMap.get(value);
+function deepClone(value, weakMap = new WeakMap()) {
+	if (value === null || typeof value !== "object") return value;
 
-  // handle Date
-  if(value instanceof Date) return new Date(value.getTime());
+	// handle circular reference
+	if (weakMap.has(value)) return weakMap.get(value);
 
-  // handle Array
-  if(Array.isArray(value)){
-    const result = [];
-    for(let i = 0; i < value.length; i++){
-      result[i] = deepClone(value[i], weakMap);
-    }
-    return result;
-  }
+	// handle Date
+	if (value instanceof Date) return new Date(value.getTime());
 
-  // handle Object
-  if(value instanceof Object){
-    const result = {};
-    weakMap.set(value, result);
-    for(const key in value){
-      if(value.hasOwnProperty(key)){
-        result[key] = deepClone(value[key], weakMap);
-      }
-    }
-    return result;
-  }
+	// handle Array
+	if (Array.isArray(value)) {
+		const result = [];
+		for (let i = 0; i < value.length; i++) {
+			result[i] = deepClone(value[i], weakMap);
+		}
+		return result;
+	}
 
-  return value;
+	// handle Object
+	if (value instanceof Object) {
+		const result = {};
+		weakMap.set(value, result);
+		for (const key in value) {
+			if (value.hasOwnProperty(key)) {
+				result[key] = deepClone(value[key], weakMap);
+			}
+		}
+		return result;
+	}
+
+	return value;
 }
-`.trim();
+
+const original = { name: "John", nested: { tags: ["a", "b"] } };
+const cloned = deepClone(original);
+cloned.nested.tags.push("c");
 
 const DeepClone = () => {
 	return (
@@ -87,9 +91,14 @@ const DeepClone = () => {
 						and handles complex nested structures.
 					</li>
 				</ul>
+				<p>
+					<strong>Live example:</strong>
+				</p>
+				<p>Original: {JSON.stringify(original)}</p>
+				<p>Cloned (after mutating clone's nested array): {JSON.stringify(cloned)}</p>
 			</LearningBox>
 
-			<CodeDisplay codeString={exampleCode} />
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

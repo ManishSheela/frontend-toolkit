@@ -4,47 +4,44 @@ import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
 
-const exampleCode = `
-const isEqual = (a, b, visited = new WeakMap()) => {
-  if (a === b) return true;
+import pageSource from "./isEqual.jsx?raw";
 
-  if (a === null || b === null || typeof a !== 'object' || typeof b !== 'object') return false;
+const isEqualDeep = (a, b, visited = new WeakMap()) => {
+	if (a === b) return true;
 
-  // Check circular references
-  if (visited.has(a)) return visited.get(a) === b;
-  visited.set(a, b);
-  
-  if (Array.isArray(a) !== Array.isArray(b)) return false;
+	if (a === null || b === null || typeof a !== "object" || typeof b !== "object")
+		return false;
 
-  
-  const aKeys = Object.keys(a);
-  const bKeys = Object.keys(b);
-  if (aKeys.length !== bKeys.length) return false;
+	// Check circular references
+	if (visited.has(a)) return visited.get(a) === b;
+	visited.set(a, b);
 
-  // Check if both are arrays
-  if (Array.isArray(a) && Array.isArray(b)) {
-    if (a.length !== b.length) return false;
-    for (let i = 0; i < a.length; i++) {
-      if (!isEqual(a[i], b[i], visited)) return false;
-    }
-    return true;
-  }
+	if (Array.isArray(a) !== Array.isArray(b)) return false;
 
-  for (const key of aKeys) {
-    if (!b.hasOwnProperty(key)) return false;
-    if (!isEqual(a[key], b[key], visited)) return false;
-  }
+	const aKeys = Object.keys(a);
+	const bKeys = Object.keys(b);
+	if (aKeys.length !== bKeys.length) return false;
 
-  return true;
+	// Check if both are arrays
+	if (Array.isArray(a) && Array.isArray(b)) {
+		if (a.length !== b.length) return false;
+		for (let i = 0; i < a.length; i++) {
+			if (!isEqualDeep(a[i], b[i], visited)) return false;
+		}
+		return true;
+	}
+
+	for (const key of aKeys) {
+		if (!b.hasOwnProperty(key)) return false;
+		if (!isEqualDeep(a[key], b[key], visited)) return false;
+	}
+
+	return true;
 };
-
 
 const obj1 = { name: "John", age: 30, nested: { x: [1, 2, 3] } };
 const obj2 = { name: "John", age: 30, nested: { x: [1, 2, 3] } };
-
-console.log(isEqual(obj1, obj2)); // true
-
-`.trim();
+const areEqual = isEqualDeep(obj1, obj2);
 
 const isEqual = () => {
 	return (
@@ -103,9 +100,15 @@ const isEqual = () => {
 						nested values are deeply equal.
 					</li>
 				</ul>
+							<p>
+					<strong>Live example:</strong>
+				</p>
+				<p>obj1: {JSON.stringify(obj1)}</p>
+				<p>obj2: {JSON.stringify(obj2)}</p>
+				<p>isEqual(obj1, obj2): {String(areEqual)}</p>
 			</LearningBox>
 
-			<CodeDisplay codeString={exampleCode} />
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

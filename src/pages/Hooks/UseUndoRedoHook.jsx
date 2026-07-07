@@ -1,6 +1,7 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useState } from "react";
+import pageSource from "./UseUndoRedoHook.jsx?raw";
 
 export const useUndoRedo = (initialValues) => {
 	const [history, setHistory] = useState({
@@ -73,54 +74,7 @@ const UseUndoRedoHook = () => {
 				<p className="text-white">{history.present}</p>
 				<p className="text-white">{history.future.join(">")}</p>
 			</LearningBox>
-			<CodeDisplay
-				codeString={`
-  export const useUndoRedo = (initialValues) => {
-	const [history, setHistory] = useState({
-		past: [],
-		present: initialValues,
-		future: [],
-	});
-
-	const set = (value) => {
-		setHistory((prev) => ({
-			past: [...prev.past, prev.present],
-			present: value,
-			future: [],
-		}));
-	};
-
-	const undo = () => {
-		setHistory((prev) => {
-			if (prev.past.length === 0) return prev;
-
-			const previous = prev.past[prev.past.length - 1];
-
-			return {
-				past: prev.past.slice(0, -1),
-				present: previous,
-				future: [prev.present, ...prev.future],
-			};
-		});
-	};
-
-	const redo = () => {
-		setHistory((prev) => {
-			if (prev.future.length === 0) return prev;
-
-			const next = prev.future[0];
-
-			return {
-				past: [...prev.past, prev.present],
-				present: next,
-				future: prev.future.slice(1),
-			};
-		});
-	};
-
-	return { set, history, undo, redo };
-};`}
-			/>
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

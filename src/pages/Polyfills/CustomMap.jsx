@@ -5,20 +5,18 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
-const exampleCode = `
- Array.prototype.myMap = function(callback){ 
-	 const result = [];
-	 for(let i = 0; i < this.length; i++){
-	 		result.push(callback(this[i], i, this));
-	 	}
+import pageSource from "./CustomMap.jsx?raw";
+
+Array.prototype.myMap = function (callback) {
+	const result = [];
+	for (let i = 0; i < this.length; i++) {
+		result.push(callback(this[i], i, this));
+	}
 	return result;
- }
+};
 
- const arr = [1,2,3,4];
- const result = arr.myMap((item)=> item * 2);
-
- console.log({result});
-`.trim();
+const inputArray = [1, 2, 3, 4];
+const outputArray = inputArray.myMap((item) => item * 2);
 
 const CustomMap = () => {
 	return (
@@ -74,8 +72,13 @@ const CustomMap = () => {
 						producing a new array with transformed values.
 					</li>
 				</ul>
+				<p>
+					<strong>Live example:</strong>
+				</p>
+				<p>Input: {JSON.stringify(inputArray)}</p>
+				<p>Output: {JSON.stringify(outputArray)}</p>
 			</LearningBox>
-			<CodeDisplay codeString={exampleCode} />
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

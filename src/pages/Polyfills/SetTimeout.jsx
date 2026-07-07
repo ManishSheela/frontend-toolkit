@@ -1,52 +1,54 @@
 /* eslint-disable react/no-unescaped-entities */
-import { lazy } from "react";
+import { lazy, useEffect, useState } from "react";
 import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
 
-const exampleCode = `
+import pageSource from "./SetTimeout.jsx?raw";
 
-window.timerId = 1;
-window.timers = {};
+// Scoped under different names so this demo doesn't clobber the real window.setTimeout.
+let timerId = 1;
+const timers = {};
 
 function processTimers() {
-    const now = Date.now();
+	const now = Date.now();
 
-    Object.keys(window.timers).forEach((key) => {
-        const { callback, start, args } = window.timers[key];
-        if (now >= start) {
-            callback(...args);
-            delete window.timers[key];
-        }
-    });
+	Object.keys(timers).forEach((key) => {
+		const { callback, start, args } = timers[key];
+		if (now >= start) {
+			callback(...args);
+			delete timers[key];
+		}
+	});
 
-    if (Object.keys(window.timers).length > 0) {
-        requestAnimationFrame(processTimers); // keep checking
-    }
+	if (Object.keys(timers).length > 0) {
+		requestAnimationFrame(processTimers);
+	}
 }
 
-window.setTimeout = (callback, delay, ...args) => {
-    const id = window.timerId++;
-    window.timers[id] = {
-        callback,
-        start: Date.now() + delay,
-        args
-    };
+function customSetTimeout(callback, delay, ...args) {
+	const id = timerId++;
+	timers[id] = {
+		callback,
+		start: Date.now() + delay,
+		args,
+	};
 
-    requestAnimationFrame(processTimers);
-    return id;
-};
+	requestAnimationFrame(processTimers);
+	return id;
+}
 
-window.clearTimeout = (id) => {
-    delete window.timers[id];
-};
-
-
-setTimout(()=> console.log('working fine'), 1000)
-
-`.trim();
+function customClearTimeout(id) {
+	delete timers[id];
+}
 
 const SetTimeout = () => {
+	const [message, setMessage] = useState("waiting...");
+
+	useEffect(() => {
+		customSetTimeout(() => setMessage("working fine"), 1000);
+	}, []);
+
 	return (
 		<>
 			<LearningBox className="gap-2 shadow-xs text-white text-sm text-left">
@@ -86,9 +88,13 @@ const SetTimeout = () => {
 						mechanism and is a functional polyfill.
 					</li>
 				</ul>
+							<p>
+					<strong>Live example (customSetTimeout(callback, 1000)):</strong>
+				</p>
+				<p>{message}</p>
 			</LearningBox>
 
-			<CodeDisplay codeString={exampleCode} />
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

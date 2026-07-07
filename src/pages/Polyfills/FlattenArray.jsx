@@ -5,22 +5,22 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
-const exampleCode = `
-const arr = ['a', 'b', ['c', 'd'], 'e', ['f', 'g']];
+import pageSource from "./FlattenArray.jsx?raw";
+
+const inputArray = ["a", "b", ["c", "d"], "e", ["f", "g"]];
 
 const flattenArray = (arr, result = []) => {
-  if (Array.isArray(arr)) {
-    for (const key of arr) {
-      flattenArray(key, result);
-    }
-  } else {
-    result.push(arr);
-  }
-  return result;
+	if (Array.isArray(arr)) {
+		for (const key of arr) {
+			flattenArray(key, result);
+		}
+	} else {
+		result.push(arr);
+	}
+	return result;
 };
 
-console.log(flattenArray(arr)); // ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-`.trim();
+const outputArray = flattenArray(inputArray);
 
 const FlattenArray = () => {
 	return (
@@ -83,8 +83,13 @@ const FlattenArray = () => {
 						into a flat array.
 					</li>
 				</ul>
+							<p>
+					<strong>Live example:</strong>
+				</p>
+				<p>Input: {JSON.stringify(inputArray)}</p>
+				<p>Output: {JSON.stringify(outputArray)}</p>
 			</LearningBox>
-			<CodeDisplay codeString={exampleCode} />
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

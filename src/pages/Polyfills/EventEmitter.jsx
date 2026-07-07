@@ -4,51 +4,54 @@ import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
 
-const exampleCode = `
-class EventEmitter {
-  constructor() {
-    this.events = {};
-  }
+import pageSource from "./EventEmitter.jsx?raw";
 
-  on(eventName, fn) {
-    if (!this.events[eventName]) {
-      this.events[eventName] = [];
-    }
-    this.events[eventName].push(fn);
+class MyEventEmitter {
+	constructor() {
+		this.events = {};
+	}
 
-    return {
-      unsubscribe: () => {
-        const updatedFn = this.events[eventName].filter(listener => listener !== fn);
-        this.events[eventName] = updatedFn;
-      }
-    };
-  }
+	on(eventName, fn) {
+		if (!this.events[eventName]) {
+			this.events[eventName] = [];
+		}
+		this.events[eventName].push(fn);
 
-  emit(eventName, ...args) {
-    const allEvents = this.events[eventName];
-    if (allEvents) {
-      allEvents.forEach(fn => {
-        fn(...args);
-      });
-    }
-  }
+		return {
+			unsubscribe: () => {
+				const updatedFn = this.events[eventName].filter(
+					(listener) => listener !== fn,
+				);
+				this.events[eventName] = updatedFn;
+			},
+		};
+	}
+
+	emit(eventName, ...args) {
+		const allEvents = this.events[eventName];
+		if (allEvents) {
+			allEvents.forEach((fn) => {
+				fn(...args);
+			});
+		}
+	}
 }
 
-const emitter = new EventEmitter();
+const log = [];
+const emitter = new MyEventEmitter();
 
-const greet = (message) => console.log(\`Greet: \${message}\`);
-const farewell = (message) => console.log(\`Farewell: \${message}\`);
+const greet = (message) => log.push(`Greet: ${message}`);
+const farewell = (message) => log.push(`Farewell: ${message}`);
 
-const greetSub = emitter.on('hello', greet);
-emitter.on('goodbye', farewell);
+const greetSub = emitter.on("hello", greet);
+emitter.on("goodbye", farewell);
 
-emitter.emit('hello', 'Hello, World!');
-emitter.emit('goodbye', 'Goodbye, World!');
+emitter.emit("hello", "Hello, World!");
+emitter.emit("goodbye", "Goodbye, World!");
 
-greetSub.unsubscribe(); 
+greetSub.unsubscribe();
 
-emitter.emit('hello', 'This should not call greet');
-`.trim();
+emitter.emit("hello", "This should not call greet");
 
 const EventEmitter = () => {
 	return (
@@ -98,8 +101,14 @@ const EventEmitter = () => {
 						</ul>
 					</li>
 				</ul>
+							<p>
+					<strong>Live example (log of emitted events):</strong>
+				</p>
+				{log.map((entry, i) => (
+					<p key={i}>{entry}</p>
+				))}
 			</LearningBox>
-			<CodeDisplay codeString={exampleCode} />
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };

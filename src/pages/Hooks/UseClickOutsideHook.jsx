@@ -1,6 +1,7 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useRef } from "react";
+import pageSource from "./UseClickOutsideHook.jsx?raw";
 
 const useClickOutside = (ref, handler) => {
 	useEffect(() => {
@@ -32,23 +33,7 @@ const UseClickOutsideHook = () => {
 					<p>clickOutsideHook</p>
 				</div>
 			</LearningBox>
-			<CodeDisplay
-				codeString={`
-
-const useClickOutside = (ref, handler) => {
-	useEffect(() => {
-		const listner = (event) => {
-			if (ref.current && !ref.current.contains(event.target)) {
-				handler();
-			}
-		};
-		document.addEventListener("mousedown", listner);
-
-		return () => document.removeEventListener("mousedown", listner);
-	}, [ref]);
-};
-					`}
-			/>
+			<CodeDisplay codeString={pageSource} />
 		</>
 	);
 };
