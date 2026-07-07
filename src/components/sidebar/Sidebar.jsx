@@ -18,7 +18,7 @@ const SidebarHeader = () => (
 	</Link>
 );
 
-const Sidebar = () => {
+const Sidebar = ({ onNavigate }) => {
 	const [query, setQuery] = useState("");
 
 	const normalizedQuery = query.trim().toLowerCase();
@@ -40,7 +40,7 @@ const Sidebar = () => {
 	);
 
 	return (
-		<div className="bg-gray-50  w-72 p-4 text-gray-800 shadow-xl flex flex-col">
+		<div className="bg-gray-50 w-[85vw] max-w-72 md:w-72 h-full p-4 text-gray-800 shadow-xl flex flex-col">
 			<SidebarHeader />
 			<div className="text-gray-500 text-sm mt-1">v1.0.0</div>
 			<div className="mt-4">
@@ -54,7 +54,7 @@ const Sidebar = () => {
 			</div>
 			<div className="flex flex-col mt-4 overflow-y-auto h-[calc(100vh-30px)]">
 				{filteredSections?.map((menu) => (
-					<MenuItem key={menu.title} menu={menu} />
+					<MenuItem key={menu.title} menu={menu} onNavigate={onNavigate} />
 				))}
 			</div>
 		</div>
