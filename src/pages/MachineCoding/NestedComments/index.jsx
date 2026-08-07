@@ -4,8 +4,10 @@ import { useComments } from "./useComments";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
 
+// #region implementation
 const CommentItem = ({
 	comment,
 	handleAddComments,
@@ -122,6 +124,7 @@ const CommentItem = ({
 		</>
 	);
 };
+// #endregion implementation
 
 const NestedComments = () => {
 	const {
@@ -171,7 +174,7 @@ const NestedComments = () => {
 				</div>
 			</LearningBox>
 
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

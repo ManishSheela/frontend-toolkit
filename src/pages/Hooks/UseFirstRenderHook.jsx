@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useRef } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseFirstRenderHook.jsx?raw";
 
+// #region implementation
 const useFirstRender = () => {
 	const ref = useRef(true);
 
@@ -14,6 +16,7 @@ const useFirstRender = () => {
 
 	return ref.current;
 };
+// #endregion implementation
 
 const UseFirstRenderHook = () => {
 	const isFirstRender = useFirstRender();
@@ -22,7 +25,7 @@ const UseFirstRenderHook = () => {
 			<LearningBox>
 				<h2 className="text-white">is this the first render? {isFirstRender ? "Yes" : "No"}</h2>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

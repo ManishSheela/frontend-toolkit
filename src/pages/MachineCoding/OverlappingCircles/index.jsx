@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
 
+// #region implementation
 const CIRCLE_SIZE = 100;
 
 const addCircles = (e) => {
@@ -133,9 +135,10 @@ const OverlappingCircles = () => {
 					<Circle key={index} {...circle} />
 				))}
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };
+// #endregion implementation
 
 export default OverlappingCircles;

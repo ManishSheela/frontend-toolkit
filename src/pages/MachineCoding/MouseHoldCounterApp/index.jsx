@@ -6,8 +6,10 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
 
+// #region implementation
 const MouseHoldCounterApp = () => {
 	const [count, setCount] = useState(0);
 	const intervalRef = useRef(null);
@@ -62,9 +64,10 @@ const MouseHoldCounterApp = () => {
 					+
 				</Button>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };
+// #endregion implementation
 
 export default MouseHoldCounterApp;

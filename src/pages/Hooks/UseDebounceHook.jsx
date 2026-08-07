@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseDebounceHook.jsx?raw";
 
+// #region implementation
 const useDebounce = (value, delay) => {
 	const [debouncedValue, setDebouncedValue] = useState(value);
 
@@ -15,6 +17,7 @@ const useDebounce = (value, delay) => {
 
 	return debouncedValue;
 };
+// #endregion implementation
 
 const UseDebounceHook = () => {
 	const [inputValue, setInputValue] = useState("");
@@ -34,7 +37,7 @@ const UseDebounceHook = () => {
 				<p>Input Value: {inputValue}</p>
 				<p>Debounced Value: {debouncedValue}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

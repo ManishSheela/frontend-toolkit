@@ -6,8 +6,10 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
 
+// #region implementation
 const TicTacToe = () => {
 	const [board, setBoard] = useState(() => new Array(9).fill(null));
 	const [xTurn, setXTurn] = useState(true);
@@ -74,9 +76,10 @@ const TicTacToe = () => {
 				</div>
 			</LearningBox>
 
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };
+// #endregion implementation
 
 export default TicTacToe;

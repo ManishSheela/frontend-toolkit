@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseThrottleHook.jsx?raw";
 
+// #region implementation
 export const useThrottleValue = (value, delay = 500) => {
 	const [throttledValue, setThrottledValue] = useState(value);
 	const lastExecuted = useRef(Date.now());
@@ -46,6 +48,7 @@ export const useThrottle = (callback, delay = 500) => {
 
 	return throttleFn;
 };
+// #endregion implementation
 
 const UseThrottleHook = () => {
 	const [count, setCount] = useState(0);
@@ -79,7 +82,7 @@ const UseThrottleHook = () => {
 				/>
 				<p className="text-white">Throttled Value: {throttledValue}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

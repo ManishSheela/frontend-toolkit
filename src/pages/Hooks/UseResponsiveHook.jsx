@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseResponsiveHook.jsx?raw";
 
+// #region implementation
 const useResponsive = () => {
 	const [state, setState] = useState({
 		isMobile: false,
@@ -26,6 +28,7 @@ const useResponsive = () => {
 
 	return state;
 };
+// #endregion implementation
 
 const UseResponsiveHook = () => {
 	const { isMobile, isTablet, isDesktop } = useResponsive();
@@ -36,7 +39,7 @@ const UseResponsiveHook = () => {
 				{isTablet && <p className="text-white">Tablet View</p>}
 				{isDesktop && <p className="text-white">Desktop View</p>}
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

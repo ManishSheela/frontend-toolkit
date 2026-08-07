@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseUndoRedoHook.jsx?raw";
 
+// #region implementation
 export const useUndoRedo = (initialValues) => {
 	const [history, setHistory] = useState({
 		past: [],
@@ -50,6 +52,7 @@ export const useUndoRedo = (initialValues) => {
 
 	return { set, history, undo, redo };
 };
+// #endregion implementation
 
 const UseUndoRedoHook = () => {
 	const { set, history, undo, redo } = useUndoRedo("");
@@ -74,7 +77,7 @@ const UseUndoRedoHook = () => {
 				<p className="text-white">{history.present}</p>
 				<p className="text-white">{history.future.join(">")}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

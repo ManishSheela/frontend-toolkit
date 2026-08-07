@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useRef, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseIsIdleHook.jsx?raw";
 
+// #region implementation
 const MOUSE_EVENTS = ["mousemove", "mousedown", "touch", "scroll", "keydown"];
 
 const useIdle = (timeout = 3000) => {
@@ -33,6 +35,7 @@ const useIdle = (timeout = 3000) => {
 
 	return isIdle;
 };
+// #endregion implementation
 
 const UseIsIdleHook = () => {
 	const isIdle = useIdle(2000);
@@ -42,7 +45,7 @@ const UseIsIdleHook = () => {
 			<LearningBox>
 				<h2 className="text-white">Is user idle? {isIdle ? "Yes" : "No"}</h2>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

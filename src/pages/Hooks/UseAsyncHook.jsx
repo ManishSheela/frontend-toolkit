@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useCallback, useEffect, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseAsyncHook.jsx?raw";
 
+// #region implementation
 const useAsync = (asyncFunction, immediate = true) => {
 	const [result, setResult] = useState({
 		error: null,
@@ -28,6 +30,7 @@ const useAsync = (asyncFunction, immediate = true) => {
 
 	return result;
 };
+// #endregion implementation
 
 const fetchUsers = async () => {
 	const res = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -50,7 +53,7 @@ const UseAsyncHook = () => {
 					</ul>
 				)}
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

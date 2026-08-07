@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseKeyPressHook.jsx?raw";
 
+// #region implementation
 const useKeyPress = (targetKey) => {
 	const [pressed, setPressed] = useState(false);
 
@@ -21,6 +23,7 @@ const useKeyPress = (targetKey) => {
 
 	return pressed;
 };
+// #endregion implementation
 
 const UseKeyPressHook = () => {
 	const eKey = useKeyPress("e");
@@ -33,7 +36,7 @@ const UseKeyPressHook = () => {
 					{upKey ? "ArrowUp is pressed" : "Press ArrowUp"}
 				</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

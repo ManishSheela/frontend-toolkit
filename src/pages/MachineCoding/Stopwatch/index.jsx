@@ -6,8 +6,10 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
 
+// #region implementation
 const formatTime = (ms) => {
 	const minute = Math.floor(ms / 60000);
 	const second = Math.floor((ms % 60000) / 1000);
@@ -56,9 +58,10 @@ const Stopwatch = () => {
 					<Button onClick={reset}>Reset</Button>
 				</div>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };
+// #endregion implementation
 
 export default Stopwatch;

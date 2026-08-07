@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseWindowSizeHook.jsx?raw";
 
+// #region implementation
 const useWindowSize = () => {
 	const [size, setSize] = useState({
 		width: window.innerWidth,
@@ -21,6 +23,7 @@ const useWindowSize = () => {
 
 	return size;
 };
+// #endregion implementation
 
 const UseWindowSizeHook = () => {
 	const { width, height } = useWindowSize();
@@ -30,7 +33,7 @@ const UseWindowSizeHook = () => {
 				<p className="text-white "> width : {width}</p>
 				<p className="text-white "> height : {height}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

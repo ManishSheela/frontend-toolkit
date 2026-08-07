@@ -3,8 +3,10 @@ import ProductCard from "./ProductCard";
 import PaginationComponent, { ITEMS_PER_PAGE } from "./PaginationComponent";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
 
+// #region implementation
 const Pagination = () => {
 	const [data, setData] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
@@ -38,9 +40,10 @@ const Pagination = () => {
 					})}
 				</div>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };
+// #endregion implementation
 
 export default Pagination;

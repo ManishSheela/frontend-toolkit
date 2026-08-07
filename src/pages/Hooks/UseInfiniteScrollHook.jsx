@@ -1,8 +1,10 @@
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseInfiniteScrollHook.jsx?raw";
 
+// #region implementation
 export const useInfiniteScroll = (callback, Threshold = 20) => {
 	const callbackRef = useRef(callback);
 
@@ -24,6 +26,7 @@ export const useInfiniteScroll = (callback, Threshold = 20) => {
 
 	return handleScroll;
 };
+// #endregion implementation
 
 const UseInfiniteScrollHook = () => {
 	const [data, setData] = useState([...new Array(40)]);
@@ -44,7 +47,7 @@ const UseInfiniteScrollHook = () => {
 					))}
 				</div>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

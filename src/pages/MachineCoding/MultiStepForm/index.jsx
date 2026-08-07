@@ -7,8 +7,10 @@ import {
 	StepFormContextProvider,
 	useStepForm,
 } from "@/src/context/step-form-provider";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
 
+// #region implementation
 const totalSteps = 3;
 const StepForm = () => {
 	const { currentStep, setCurrentStep, userData, setUserData } = useStepForm();
@@ -162,6 +164,7 @@ const StepForm = () => {
 		</div>
 	);
 };
+// #endregion implementation
 
 const MultiStepForm = () => {
 	return (
@@ -172,7 +175,7 @@ const MultiStepForm = () => {
 				</StepFormContextProvider>
 			</LearningBox>
 
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

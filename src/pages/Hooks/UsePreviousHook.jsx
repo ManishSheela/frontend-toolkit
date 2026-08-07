@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
 import { useEffect, useRef, useState } from "react";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UsePreviousHook.jsx?raw";
 
+// #region implementation
 const usePrevious = (value) => {
 	const ref = useRef();
 
@@ -13,6 +15,7 @@ const usePrevious = (value) => {
 
 	return ref.current;
 };
+// #endregion implementation
 
 const UsePreviousHook = () => {
 	const [count, setCount] = useState(0);
@@ -30,7 +33,7 @@ const UsePreviousHook = () => {
 					Increment
 				</Button>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

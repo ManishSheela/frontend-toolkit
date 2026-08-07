@@ -5,8 +5,10 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
 
+// #region implementation
 function Suffle(data) {
 	const newArr = [...data];
 	for (let i = newArr.length - 1; i > 0; i--) {
@@ -143,9 +145,10 @@ const MemoryGame = () => {
 					</>
 				)}
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };
+// #endregion implementation
 
 export default MemoryGame;
