@@ -37,8 +37,10 @@ const StepForm = () => {
 		return false;
 	};
 	return (
-		<div className="w-full m-auto p-8 bg-white rounded-lg shadow-md">
-			<h2 className="text-xl font-semibold text-gray-700">Multi Step Form</h2>
+		<div className="w-full m-auto p-8 bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-black/40">
+			<h2 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
+				Multi Step Form
+			</h2>
 
 			{/* Progress Bar */}
 
@@ -57,23 +59,23 @@ const StepForm = () => {
 			{/* Step Forms */}
 			{currentStep === 0 && (
 				<div className="w-full flex flex-col justify-start items-start">
-					<label className="block text-sm font-medium text-gray-700">
+					<label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
 						First Name<span className="text-red-500">*</span>
 					</label>
 					<input
 						type="text"
-						className="mt-1 mb-4 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+						className="mt-1 mb-4 w-full p-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
 						value={userData.firstName}
 						name="firstName"
 						onChange={handleUserData}
 					/>
 
-					<label className="block text-sm font-medium text-gray-700">
+					<label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
 						Last Name
 					</label>
 					<input
 						type="text"
-						className="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+						className="mt-1 w-full p-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
 						value={userData.lastName}
 						name="lastName"
 						onChange={handleUserData}
@@ -83,23 +85,23 @@ const StepForm = () => {
 
 			{currentStep === 1 && (
 				<div className="w-full flex flex-col justify-start items-start">
-					<label className="block text-sm font-medium text-gray-700">
+					<label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
 						Username<span className="text-red-500">*</span>
 					</label>
 					<input
 						type="text"
-						className="mt-1 mb-4 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+						className="mt-1 mb-4 w-full p-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
 						value={userData.username}
 						name="username"
 						onChange={handleUserData}
 					/>
 
-					<label className="block text-sm font-medium text-gray-700">
+					<label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
 						Email<span className="text-red-500">*</span>
 					</label>
 					<input
 						type="email"
-						className="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+						className="mt-1 w-full p-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
 						value={userData.email}
 						name="email"
 						onChange={handleUserData}
@@ -109,23 +111,23 @@ const StepForm = () => {
 
 			{currentStep === 2 && (
 				<div className="w-full flex flex-col justify-start items-start">
-					<label className="block text-sm font-medium text-gray-700">
+					<label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
 						Password<span className="text-red-500">*</span>
 					</label>
 					<input
 						type="password"
-						className="mt-1 mb-4 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+						className="mt-1 mb-4 w-full p-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
 						value={userData.password}
 						name="password"
 						onChange={handleUserData}
 					/>
 
-					<label className="block text-sm font-medium text-gray-700">
+					<label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
 						Confirm Password<span className="text-red-500">*</span>
 					</label>
 					<input
 						type="password"
-						className="mt-1 w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+						className="mt-1 w-full p-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
 						value={userData.confirmPassword}
 						name="confirmPassword"
 						onChange={handleUserData}

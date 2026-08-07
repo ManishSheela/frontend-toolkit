@@ -2,10 +2,12 @@ import { ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { LucideCheck, LucideCopy } from "lucide-react";
 import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { prism, oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useTheme } from "@/src/context/theme-provider";
 
 const CodeDisplay = ({ codeString }) => {
 	const [copied, setCopied] = useState(false);
+	const { theme } = useTheme();
 
 	const handleCopy = async () => {
 		try {
@@ -36,7 +38,7 @@ const CodeDisplay = ({ codeString }) => {
 
 					<SyntaxHighlighter
 						language="jsx"
-						style={prism}
+						style={theme === "dark" ? oneDark : prism}
 						showLineNumbers
 						wrapLines
 						wrapLongLines

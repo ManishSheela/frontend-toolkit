@@ -5,13 +5,15 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./CustomFilter.jsx?raw";
 
+// #region implementation
 Array.prototype.myFilter = function (callback) {
 	const result = [];
 	for (let i = 0; i < this.length; i++) {
 		const res = callback(this[i], i, this);
-		if (!!res) {
+		if (res) {
 			result.push(this[i]);
 		}
 	}
@@ -20,6 +22,8 @@ Array.prototype.myFilter = function (callback) {
 
 const inputArray = [1, 2, 3, 4];
 const outputArray = inputArray.myFilter((item) => item % 2 === 0);
+// #endregion implementation
+
 
 const CustomFilter = () => {
 	return (
@@ -89,7 +93,7 @@ const CustomFilter = () => {
 				<p>Input: {JSON.stringify(inputArray)}</p>
 				<p>Output: {JSON.stringify(outputArray)}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

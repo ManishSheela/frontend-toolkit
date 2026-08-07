@@ -28,7 +28,7 @@ const UseClickOutsideHook = () => {
 			<LearningBox>
 				<div
 					ref={containerRef}
-					className="flex justify-center items-center w-[150px] h-[150px] p-5 bg-white cursor-pointer"
+					className="flex justify-center items-center w-[150px] h-[150px] p-5 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100 cursor-pointer"
 				>
 					<p>clickOutsideHook</p>
 				</div>

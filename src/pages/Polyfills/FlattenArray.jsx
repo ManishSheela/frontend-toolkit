@@ -5,10 +5,12 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./FlattenArray.jsx?raw";
 
 const inputArray = ["a", "b", ["c", "d"], "e", ["f", "g"]];
 
+// #region implementation
 const flattenArray = (arr, result = []) => {
 	if (Array.isArray(arr)) {
 		for (const key of arr) {
@@ -19,6 +21,7 @@ const flattenArray = (arr, result = []) => {
 	}
 	return result;
 };
+// #endregion implementation
 
 const outputArray = flattenArray(inputArray);
 
@@ -89,7 +92,7 @@ const FlattenArray = () => {
 				<p>Input: {JSON.stringify(inputArray)}</p>
 				<p>Output: {JSON.stringify(outputArray)}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

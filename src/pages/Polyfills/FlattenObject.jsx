@@ -5,10 +5,12 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./FlattenObject.jsx?raw";
 
 const inputObject = { a: 1, b: 2, c: { d: 1, e: 2 } };
 
+// #region implementation
 const flattenObj = (obj, parentKey = "", result = {}) => {
 	for (const key in obj) {
 		const value = obj[key];
@@ -22,6 +24,7 @@ const flattenObj = (obj, parentKey = "", result = {}) => {
 	}
 	return result;
 };
+// #endregion implementation
 
 const outputObject = flattenObj(inputObject);
 
@@ -111,7 +114,7 @@ const FlattenObject = () => {
 				<p>Input: {JSON.stringify(inputObject)}</p>
 				<p>Output: {JSON.stringify(outputObject)}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

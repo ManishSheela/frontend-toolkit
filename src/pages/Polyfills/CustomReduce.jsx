@@ -5,8 +5,10 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./CustomReduce.jsx?raw";
 
+// #region implementation
 Array.prototype.myReduce = function (callback, initialValue = this[0]) {
 	let acc = initialValue;
 	for (let i = 0; i < this.length; i++) {
@@ -17,6 +19,7 @@ Array.prototype.myReduce = function (callback, initialValue = this[0]) {
 
 const inputArray = [1, 2, 3, 4];
 const outputSum = inputArray.myReduce((acc, curr) => acc + curr, 0);
+// #endregion implementation
 
 const CustomReduce = () => {
 	return (
@@ -95,7 +98,7 @@ const CustomReduce = () => {
 				<p>Input: {JSON.stringify(inputArray)}</p>
 				<p>Output (sum): {outputSum}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import CodeDisplay from "@/src/components/molecules/CodeDisplay";
 import LearningBox from "@/src/components/organisms/LearningBox";
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./Promise.jsx?raw";
 
+// #region implementation
 class MyPromise {
 	constructor(executor) {
 		this.state = "pending";
@@ -41,6 +43,7 @@ class MyPromise {
 		return this;
 	}
 }
+// #endregion implementation
 
 const Promise = () => {
 	const [status, setStatus] = useState("pending");
@@ -92,7 +95,7 @@ const Promise = () => {
 				<p>Status: {status}</p>
 			</LearningBox>
 
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

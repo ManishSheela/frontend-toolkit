@@ -34,7 +34,7 @@ const CommentItem = ({
 
 	return (
 		<>
-			<div className="flex flex-col justify-between align-start shadow-lg rounded-lg p-2 mb-2 bg-white">
+			<div className="flex flex-col justify-between align-start shadow-lg dark:shadow-black/40 rounded-lg p-2 mb-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
 				<p className="border-l-4 border-primary pl-2 text-start">
 					{comment.text}
 				</p>
@@ -108,7 +108,7 @@ const CommentItem = ({
 					</div>
 				</div>
 			)}
-			<div className="ml-8 border-l-2 border-slate-100 pl-2">
+			<div className="ml-8 border-l-2 border-slate-100 dark:border-slate-700 pl-2">
 				{comment?.replies?.map((reply) => (
 					<CommentItem
 						key={reply.id}

@@ -6,7 +6,7 @@ const LearningBox = ({ className, children, ...props }) => {
 		<ResizablePanel defaultSize={50} minSize={0}>
 			<div
 				className={cn(
-					"flex flex-col w-full h-full min-h-0 rounded-sm p-4 bg-stone-700 text-center overflow-y-auto",
+					"flex flex-col w-full h-full min-h-0 rounded-sm p-4 bg-stone-700 text-gray-100 text-center overflow-y-auto",
 					className,
 				)}
 				{...props}

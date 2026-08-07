@@ -4,8 +4,10 @@ import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./isEqual.jsx?raw";
 
+// #region implementation
 const isEqualDeep = (a, b, visited = new WeakMap()) => {
 	if (a === b) return true;
 
@@ -38,10 +40,12 @@ const isEqualDeep = (a, b, visited = new WeakMap()) => {
 
 	return true;
 };
+// #endregion implementation
 
 const obj1 = { name: "John", age: 30, nested: { x: [1, 2, 3] } };
 const obj2 = { name: "John", age: 30, nested: { x: [1, 2, 3] } };
 const areEqual = isEqualDeep(obj1, obj2);
+
 
 const isEqual = () => {
 	return (
@@ -108,7 +112,7 @@ const isEqual = () => {
 				<p>isEqual(obj1, obj2): {String(areEqual)}</p>
 			</LearningBox>
 
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

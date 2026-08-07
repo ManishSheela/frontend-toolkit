@@ -5,8 +5,10 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./CustomMap.jsx?raw";
 
+// #region implementation
 Array.prototype.myMap = function (callback) {
 	const result = [];
 	for (let i = 0; i < this.length; i++) {
@@ -17,6 +19,7 @@ Array.prototype.myMap = function (callback) {
 
 const inputArray = [1, 2, 3, 4];
 const outputArray = inputArray.myMap((item) => item * 2);
+// #endregion implementation
 
 const CustomMap = () => {
 	return (
@@ -78,7 +81,7 @@ const CustomMap = () => {
 				<p>Input: {JSON.stringify(inputArray)}</p>
 				<p>Output: {JSON.stringify(outputArray)}</p>
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

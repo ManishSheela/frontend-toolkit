@@ -58,7 +58,7 @@ const TicTacToe = () => {
 				) : (
 					<div>Next Turn: {xTurn ? "X" : "O"}</div>
 				)}
-				<Button onClick={reset} className="text-black w-52">
+				<Button onClick={reset} className="w-52">
 					Reset
 				</Button>
 				<div className="grid grid-cols-3 grid-rows-3 gap-1">

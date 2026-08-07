@@ -6,10 +6,10 @@ const NotFound = () => {
 	return (
 		<ContentArea>
 			<div className="flex flex-col items-center justify-center text-center">
-				<h2 className="text-3xl font-semibold text-gray-800 mb-2">
+				<h2 className="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
 					404 - Not Found
 				</h2>
-				<p className="text-gray-500">
+				<p className="text-gray-500 dark:text-gray-400">
 					Sorry, the page you're looking for doesn't exist.
 				</p>
 			</div>

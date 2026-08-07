@@ -30,7 +30,7 @@ const LearningLayout = ({ sidebar, header, children }) => {
 					<button
 						type="button"
 						onClick={() => setIsSidebarOpen((prev) => !prev)}
-						className="md:hidden p-3 text-gray-600 hover:text-gray-900"
+						className="md:hidden p-3 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
 						aria-label={isSidebarOpen ? "Close menu" : "Open menu"}
 					>
 						{isSidebarOpen ? (

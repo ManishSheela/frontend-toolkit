@@ -24,7 +24,7 @@ const ContentArea = ({ children }) => {
 	return (
 		<ResizablePanelGroup
 			orientation={isMobile ? "vertical" : "horizontal"}
-			className="w-full h-full min-h-0 rounded-lg border p-2"
+			className="w-full h-full min-h-0 rounded-lg border border-gray-200 dark:border-gray-800 p-2"
 		>
 			{children}
 		</ResizablePanelGroup>

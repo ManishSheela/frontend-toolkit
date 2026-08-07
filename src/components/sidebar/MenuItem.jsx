@@ -31,15 +31,15 @@ const MenuItem = ({ menu, onNavigate }) => {
 		<div className="flex flex-col ">
 			<div
 				className={cn(
-					"flex justify-between items-center gap-2 p-2 rounded-sm w-full cursor-pointer hover:bg-gray-100 transition-colors",
-					isExpanded && "bg-gray-100",
+					"flex justify-between items-center gap-2 p-2 rounded-sm w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors",
+					isExpanded && "bg-gray-100 dark:bg-gray-800",
 				)}
 				onClick={toggleExpand}
 			>
-				<Link className="flex-1 text-sm text-black no-underline hover:text-black">
+				<Link className="flex-1 text-sm text-black dark:text-gray-100 no-underline hover:text-black dark:hover:text-gray-100">
 					{title}
 				</Link>
-				<span className="relative w-4 h-4 shrink-0 text-gray-600">
+				<span className="relative w-4 h-4 shrink-0 text-gray-600 dark:text-gray-400">
 					<PlusIcon
 						className={cn(
 							"absolute inset-0 w-4 h-4 transition-all duration-200 ease-in-out",
@@ -65,7 +65,7 @@ const MenuItem = ({ menu, onNavigate }) => {
 					isExpanded ? "grid-rows-[1fr] opacity-100 mt-1" : "grid-rows-[0fr] opacity-0",
 				)}
 			>
-				<div className="min-h-0 overflow-y-auto ml-2 p-1 pl-2 border-l-2 border-gray-200 pr-1">
+				<div className="min-h-0 overflow-y-auto ml-2 p-1 pl-2 border-l-2 border-gray-200 dark:border-gray-700 pr-1">
 					{items?.map((subMenu, index) => (
 						<NavLink
 							key={index}
@@ -80,7 +80,7 @@ const MenuItem = ({ menu, onNavigate }) => {
 									"block text-sm mb-1 rounded-sm px-2 py-1 transition-colors",
 									isActive
 										? "bg-primary/10 text-primary font-medium"
-										: "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
+										: "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100",
 								)
 							}
 						>

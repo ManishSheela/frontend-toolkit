@@ -20,6 +20,24 @@ export const polyfillItems = [
 		Component: lazy(() => import("./CustomReduce")),
 	},
 	{
+		slug: "custom-call",
+		title: "Custom Call",
+		description: "Recreate Function.prototype.call from scratch.",
+		Component: lazy(() => import("./CustomCall")),
+	},
+	{
+		slug: "custom-apply",
+		title: "Custom Apply",
+		description: "Recreate Function.prototype.apply from scratch.",
+		Component: lazy(() => import("./CustomApply")),
+	},
+	{
+		slug: "custom-bind",
+		title: "Custom Bind",
+		description: "Recreate Function.prototype.bind from scratch.",
+		Component: lazy(() => import("./CustomBind")),
+	},
+	{
 		slug: "flatten-array",
 		title: "Flatten Array",
 		description: "Flatten deeply nested arrays into a single-level array.",

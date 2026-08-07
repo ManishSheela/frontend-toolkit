@@ -65,7 +65,10 @@ const UseThrottleHook = () => {
 		<>
 			<LearningBox>
 				<p className="text-white">{count}</p>
-				<Button onClick={buttonClick} className="bg-white w-[150px]">
+				<Button
+					onClick={buttonClick}
+					className="bg-white text-gray-900 hover:bg-gray-100 w-[150px]"
+				>
 					Click Fast 🚀
 				</Button>
 

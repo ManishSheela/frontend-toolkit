@@ -50,12 +50,10 @@ const Stopwatch = () => {
 				<h1 className="text-2xl font-bold">Stopwatch</h1>
 				<h3>{formatTime(timer)}</h3>
 				<div className="flex flex-row items-center gap-2 justify-center">
-					<Button onClick={handleStartPause} className="text-black">
+					<Button onClick={handleStartPause}>
 						{isRunning ? "Pause" : "Start"}
 					</Button>
-					<Button onClick={reset} className="text-black">
-						Reset
-					</Button>
+					<Button onClick={reset}>Reset</Button>
 				</div>
 			</LearningBox>
 			<CodeDisplay codeString={pageSource} />

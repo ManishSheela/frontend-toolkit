@@ -40,16 +40,18 @@ const Sidebar = ({ onNavigate }) => {
 	);
 
 	return (
-		<div className="bg-gray-50 w-[85vw] max-w-72 md:w-72 h-full p-4 text-gray-800 shadow-xl flex flex-col">
+		<div className="bg-gray-50 dark:bg-gray-900 w-[85vw] max-w-72 md:w-72 h-full p-4 text-gray-800 dark:text-gray-200 shadow-xl dark:shadow-black/40 flex flex-col">
 			<SidebarHeader />
-			<div className="text-gray-500 text-sm mt-1">v1.0.0</div>
+			<div className="text-gray-500 dark:text-gray-400 text-sm mt-1">
+				v1.0.0
+			</div>
 			<div className="mt-4">
 				<input
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
 					type="text"
 					placeholder="Search components..."
-					className="w-full p-2 rounded-md border border-gray-300 focus:outline-none text-sm"
+					className="w-full p-2 rounded-md border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-500 focus:outline-none text-sm"
 				/>
 			</div>
 			<div className="flex flex-col mt-4 overflow-y-auto h-[calc(100vh-30px)]">

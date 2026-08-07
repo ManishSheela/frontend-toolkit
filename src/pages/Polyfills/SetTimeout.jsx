@@ -4,9 +4,11 @@ import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./SetTimeout.jsx?raw";
 
 // Scoped under different names so this demo doesn't clobber the real window.setTimeout.
+// #region implementation
 let timerId = 1;
 const timers = {};
 
@@ -41,6 +43,7 @@ function customSetTimeout(callback, delay, ...args) {
 function customClearTimeout(id) {
 	delete timers[id];
 }
+// #endregion implementation
 
 const SetTimeout = () => {
 	const [message, setMessage] = useState("waiting...");
@@ -94,7 +97,7 @@ const SetTimeout = () => {
 				<p>{message}</p>
 			</LearningBox>
 
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

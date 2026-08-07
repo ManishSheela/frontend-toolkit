@@ -29,7 +29,7 @@ const UseDebounceHook = () => {
 					type="text"
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
-					className="p-2  text-black rounded-md border border-gray-300 focus:outline-none text-sm w-1/2 mx-auto block"
+					className="p-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none text-sm w-1/2 mx-auto block"
 				/>
 				<p>Input Value: {inputValue}</p>
 				<p>Debounced Value: {debouncedValue}</p>

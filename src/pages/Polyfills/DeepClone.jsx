@@ -6,8 +6,10 @@ const CodeDisplay = lazy(
 	() => import("@/src/components/molecules/CodeDisplay"),
 );
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./DeepClone.jsx?raw";
 
+// #region implementation
 function deepClone(value, weakMap = new WeakMap()) {
 	if (value === null || typeof value !== "object") return value;
 
@@ -43,6 +45,7 @@ function deepClone(value, weakMap = new WeakMap()) {
 
 const original = { name: "John", nested: { tags: ["a", "b"] } };
 const cloned = deepClone(original);
+// #endregion implementation
 cloned.nested.tags.push("c");
 
 const DeepClone = () => {
@@ -98,7 +101,7 @@ const DeepClone = () => {
 				<p>Cloned (after mutating clone's nested array): {JSON.stringify(cloned)}</p>
 			</LearningBox>
 
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };

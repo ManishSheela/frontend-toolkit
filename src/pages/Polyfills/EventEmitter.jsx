@@ -4,8 +4,10 @@ import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
 
+import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./EventEmitter.jsx?raw";
 
+// #region implementation
 class MyEventEmitter {
 	constructor() {
 		this.events = {};
@@ -36,6 +38,7 @@ class MyEventEmitter {
 		}
 	}
 }
+// #endregion implementation
 
 const log = [];
 const emitter = new MyEventEmitter();
@@ -108,7 +111,7 @@ const EventEmitter = () => {
 					<p key={i}>{entry}</p>
 				))}
 			</LearningBox>
-			<CodeDisplay codeString={pageSource} />
+			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
 	);
 };
