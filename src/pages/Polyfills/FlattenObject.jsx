@@ -8,14 +8,13 @@ const CodeDisplay = lazy(
 import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./FlattenObject.jsx?raw";
 
-const inputObject = { a: 1, b: 2, c: { d: 1, e: 2 } };
 
 // #region implementation
 const flattenObj = (obj, parentKey = "", result = {}) => {
 	for (const key in obj) {
 		const value = obj[key];
 		const fullKey = parentKey ? `${parentKey}.${key}` : key;
-
+		
 		if (typeof value === "object" && value !== null && !Array.isArray(value)) {
 			flattenObj(value, fullKey, result);
 		} else {
@@ -24,9 +23,10 @@ const flattenObj = (obj, parentKey = "", result = {}) => {
 	}
 	return result;
 };
+const inputObject = { a: 1, b: 2, c: { d: 1, e: 2 } };
+const outputObject = flattenObj(inputObject);
 // #endregion implementation
 
-const outputObject = flattenObj(inputObject);
 
 const FlattenObject = () => {
 	return (

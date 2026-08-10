@@ -40,11 +40,13 @@ const isEqualDeep = (a, b, visited = new WeakMap()) => {
 
 	return true;
 };
-// #endregion implementation
 
 const obj1 = { name: "John", age: 30, nested: { x: [1, 2, 3] } };
 const obj2 = { name: "John", age: 30, nested: { x: [1, 2, 3] } };
 const areEqual = isEqualDeep(obj1, obj2);
+
+// #endregion implementation
+
 
 
 const isEqual = () => {

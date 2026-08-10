@@ -56,17 +56,17 @@ export const polyfillItems = [
 		Component: lazy(() => import("./DeepClone")),
 	},
 	{
+		slug: "is-equal",
+		title: "isEqual",
+		description: "Check deep equality between complex objects and arrays.",
+		Component: lazy(() => import("./isEqual")),
+	},
+	{
 		slug: "event-emitter",
 		title: "Event Emitter",
 		description:
 			"Implement a small event emitter with subscribe and unsubscribe.",
 		Component: lazy(() => import("./EventEmitter")),
-	},
-	{
-		slug: "is-equal",
-		title: "isEqual",
-		description: "Check deep equality between complex objects and arrays.",
-		Component: lazy(() => import("./isEqual")),
 	},
 	{
 		slug: "set-timeout",

@@ -10,37 +10,48 @@ import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./DeepClone.jsx?raw";
 
 // #region implementation
-function deepClone(value, weakMap = new WeakMap()) {
-	if (value === null || typeof value !== "object") return value;
+function deepClone(value, cache = new WeakMap()) {
+  // Primitive values
+  if (value === null || typeof value !== "object") {
+    return value;
+  }
 
-	// handle circular reference
-	if (weakMap.has(value)) return weakMap.get(value);
+  // Circular references
+  if (cache.has(value)) {
+    return cache.get(value);
+  }
 
-	// handle Date
-	if (value instanceof Date) return new Date(value.getTime());
+  // Date
+  if (value instanceof Date) {
+    return new Date(value.getTime());
+  }
 
-	// handle Array
-	if (Array.isArray(value)) {
-		const result = [];
-		for (let i = 0; i < value.length; i++) {
-			result[i] = deepClone(value[i], weakMap);
-		}
-		return result;
-	}
+  // RegExp
+  if (value instanceof RegExp) {
+    return new RegExp(value.source, value.flags);
+  }
 
-	// handle Object
-	if (value instanceof Object) {
-		const result = {};
-		weakMap.set(value, result);
-		for (const key in value) {
-			if (value.hasOwnProperty(key)) {
-				result[key] = deepClone(value[key], weakMap);
-			}
-		}
-		return result;
-	}
+  // Array
+  if (Array.isArray(value)) {
+    const result = [];
+    cache.set(value, result);
 
-	return value;
+    for (let i = 0; i < value.length; i++) {
+      result[i] = deepClone(value[i], cache);
+    }
+
+    return result;
+  }
+
+  // Object
+  const result = {};
+  cache.set(value, result);
+
+  for (const key of Object.keys(value)) {
+    result[key] = deepClone(value[key], cache);
+  }
+
+  return result;
 }
 
 const original = { name: "John", nested: { tags: ["a", "b"] } };
@@ -71,6 +82,10 @@ const DeepClone = () => {
 					<li>
 						If the value is a <code>Date</code>, it returns a new{" "}
 						<code>Date</code> object with the same timestamp.
+					</li>
+					<li>
+						If the value is a <code>RegExp</code>, it returns a new{" "}
+						<code>RegExp</code> with the same source and flags.
 					</li>
 					<li>
 						If it's an <code>Array</code>, it clones each element recursively

@@ -8,7 +8,7 @@ const CodeDisplay = lazy(
 import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./FlattenArray.jsx?raw";
 
-const inputArray = ["a", "b", ["c", "d"], "e", ["f", "g"]];
+
 
 // #region implementation
 const flattenArray = (arr, result = []) => {
@@ -21,9 +21,13 @@ const flattenArray = (arr, result = []) => {
 	}
 	return result;
 };
+
+const inputArray = ["a", "b", ["c", "d"], "e", ["f", "g"]];
+const outputArray = flattenArray(inputArray);
+
 // #endregion implementation
 
-const outputArray = flattenArray(inputArray);
+
 
 const FlattenArray = () => {
 	return (
