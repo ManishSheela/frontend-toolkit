@@ -64,6 +64,13 @@ export const machineCodingItems = [
       "Flip cards to match pairs in a simple memory card game.",
     Component: lazy(() => import("./MemoryGame")),
   },
+   {
+    slug: "widget-poll",
+    title: "Widget Poll",
+    description:
+      "Flip cards to match pairs in a simple memory card game.",
+    Component: lazy(() => import("./WidgetPoll")),
+  },
   {
     slug: "mouse-hold-counter-app",
     title: "Mouse Hold Counter App",

@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from "react";
+import { lazy, useState } from "react";
 import LearningBox from "@/src/components/organisms/LearningBox";
 
 const CodeDisplay = lazy(
@@ -7,143 +7,123 @@ const CodeDisplay = lazy(
 
 import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./index.jsx?raw";
+import { Button } from "@/components/ui/button";
 
 // #region implementation
-function Suffle(data) {
-	const newArr = [...data];
-	for (let i = newArr.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * i + 1);
-		[newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-	}
 
-	return newArr;
+const EMOJI = ["🍎", "🍌", "🍇", "🍉", "🍓", "🍒", "🥝", "🥑"];
+
+function shuffleArray(array) {
+	return [...array].sort(() => Math.random() - 0.5);
 }
 
-const generateCards = (N) => {
-	const nPairs = (N * N) / 2;
-	const symbols = Array.from({ length: nPairs }, (_, i) => i + 1);
-	const totalSymbols = [...symbols, ...symbols];
-
-	const suffledSymbols = Suffle(totalSymbols);
-
-	return suffledSymbols.map((symbol, index) => ({
+function createCards() {
+	const symbols = [...EMOJI, ...EMOJI];
+	return shuffleArray(symbols).map((value, index) => ({
 		id: index,
-		symbol,
+		value,
 		isFlipped: false,
 		isMatched: false,
 	}));
-};
-
-const Card = ({ symbol, isFlipped, isMatched, onClick }) => (
-	<div
-		onClick={onClick}
-		className={`w-16 h-16 bg-gray-200 flex items-center justify-center text-2xl font-bold cursor-pointer rounded ${
-			isFlipped || isMatched
-				? "bg-primary text-white"
-				: "bg-gray-600 text-white"
-		}`}
-	>
-		{isFlipped || isMatched ? symbol : "?"}
-	</div>
-);
+}
 
 const MemoryGame = () => {
-	const [inputN, setInputN] = useState(null);
-	const [cards, setCards] = useState([]);
-	const [isStarted, setIsStarted] = useState(false);
-	const [flipIndexs, setFlipIndexs] = useState([]);
+	const [cards, setCards] = useState(() => createCards());
+	const [flippedCards, setFlippedCards] = useState([]);
+	const [isChecking, setIsChecking] = useState(false);
+	const [moves, setMoves] = useState(0);
 
-	const handleStart = () => {
-		const n = parseInt(inputN);
-		if (n > 0 && n % 2 === 0) {
-			setCards(generateCards(n));
-			setIsStarted(true);
-		} else alert("Please enter even number");
-	};
+	const handleCardClick = (card) => {
+		// Prevent interaction if checking, already flipped, or already matched
+		if (isChecking || card.isFlipped || card.isMatched) return;
+		if (flippedCards.length === 2) return;
 
-	const handleCardClick = (index) => {
-		if (flipIndexs.length === 2) return;
-		if (cards[index].isFlipped || cards[index].isMatched) return;
-		const newCards = [...cards];
-		newCards[index].isFlipped = true;
-		setCards(newCards);
-		setFlipIndexs((prev) => [...prev, index]);
-	};
+		// Flip the clicked card
+		setCards((prevCards) =>
+			prevCards.map((item) =>
+				item.id === card.id ? { ...item, isFlipped: true } : item
+			)
+		);
 
-	useEffect(() => {
-		if (flipIndexs.length === 2) {
-			const [first, second] = flipIndexs;
+		const newFlippedCards = [...flippedCards, card];
+		setFlippedCards(newFlippedCards);
 
-			if (cards[first].symbol === cards[second].symbol) {
-				setCards((prev) => {
-					const newCards = [...prev];
-					newCards[first].isMatched = true;
-					newCards[second].isMatched = true;
-					return newCards;
-				});
-				setFlipIndexs([]);
+		// When 2 cards are flipped, check for match
+		if (newFlippedCards.length === 2) {
+			setIsChecking(true);
+			setMoves((prev) => prev + 1);
+
+			const [first, second] = newFlippedCards;
+
+			if (first.value === second.value) {
+				setCards((prevCards) =>
+					prevCards.map((item) =>
+						item.id === first.id || item.id === second.id
+							? { ...item, isMatched: true }
+							: item
+					)
+				);
+				setFlippedCards([]);
+				setIsChecking(false);
 			} else {
-				const timer = setTimeout(() => {
-					setCards((prev) => {
-						const newCards = [...prev];
-						newCards[first].isFlipped = false;
-						newCards[second].isFlipped = false;
-						return newCards;
-					});
-					setFlipIndexs([]);
-				}, 1000);
-
-				return () => clearTimeout(timer);
+				setTimeout(() => {
+					setCards((prevCards) =>
+						prevCards.map((item) =>
+							item.id === first.id || item.id === second.id
+								? { ...item, isFlipped: false }
+								: item
+						)
+					);
+					setFlippedCards([]);
+					setIsChecking(false);
+				}, 800);
 			}
 		}
-	}, [flipIndexs, cards]);
+	};
+
+	const handleRestart = () => {
+		setCards(createCards());
+		setMoves(0);
+		setFlippedCards([]);
+		setIsChecking(false);
+	};
+
+	const isGameWon = cards.length > 0 && cards.every((card) => card.isMatched);
 
 	return (
 		<>
 			<LearningBox className={"gap-4"}>
-				{isStarted ? (
-					<div className="flex flex-col items-center gap-4">
-						<div
-							style={{
-								display: "grid",
-								gridTemplateColumns: `repeat(${inputN}, 1fr)`,
-							}}
-							className="gap-2 max-w-2xl mx-auto"
-						>
-							{cards.map((card, index) => (
-								<Card
-									key={card.id}
-									symbol={card.symbol}
-									isFlipped={card.isFlipped}
-									isMatched={card.isMatched}
-									onClick={() => handleCardClick(index)}
-								/>
-							))}
-						</div>
-						{cards.length > 0 && cards.every((card) => card.isMatched) && (
-							<h2 className="text-xl font-semibold text-green-600">You won!</h2>
-						)}
+				<div className="flex flex-col items-center gap-4">
+					<div className="flex items-center justify-between w-full max-w-2xl px-2">
+						<span className="text-sm font-medium">Moves: {moves}</span>
+						<Button size="sm" onClick={handleRestart}>
+							Restart
+						</Button>
 					</div>
-				) : (
-					<>
-						<h1 className="text-2xl font-bold">Memory Card Game</h1>
-						<div className="flex flex-col items-center gap-4">
-							<input
-								type="number"
-								value={inputN}
-								onChange={(e) => setInputN(e.target.value)}
-								placeholder="Enter grid size N (even)"
-								className="border p-2 rounded text-black"
-							/>
-							<button
-								onClick={handleStart}
-								className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+
+					<div
+						style={{
+							display: "grid",
+							gridTemplateColumns: `repeat(4, 1fr)`,
+						}}
+						className="gap-2 max-w-2xl mx-auto"
+					>
+						{cards.map((card) => (
+							<Button
+								key={card.id}
+								className="w-16 h-16 text-2xl flex items-center justify-center"
+								onClick={() => handleCardClick(card)}
 							>
-								Start Game
-							</button>
-						</div>
-					</>
-				)}
+
+								{card.isFlipped || card.isMatched ? card.value : "?"}
+							</Button>
+						))}
+					</div>
+
+					{isGameWon && (
+						<h2 className="text-xl font-semibold text-green-600">You won!</h2>
+					)}
+				</div>
 			</LearningBox>
 			<CodeDisplay codeString={extractSnippet(pageSource)} />
 		</>
