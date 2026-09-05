@@ -9,6 +9,20 @@ export const machineCodingItems = [
     Component: lazy(() => import("./InfiniteScroll")),
   },
   {
+    slug: "pagination",
+    title: "Pagination",
+    description:
+      "Paginate a large dataset with client-side page controls and state.",
+    Component: lazy(() => import("./Pagination")),
+  },
+  {
+    slug: "virtualized-list",
+    title: "Virtualized List",
+    description:
+      "Efficiently render large datasets by only rendering visible items in the DOM.",
+    Component: lazy(() => import("./VirtualizedList")),
+  },
+  {
     slug: "auto-complete",
     title: "AutoComplete/Typehead",
     description:
@@ -18,17 +32,10 @@ export const machineCodingItems = [
   {
     slug: "nested-comments",
     title: "Nested Comments",
-    description:
-      "Render and interact with a nested comment/thread structure.",
+    description: "Render and interact with a nested comment/thread structure.",
     Component: lazy(() => import("./NestedComments")),
   },
-  {
-    slug: "pagination",
-    title: "Pagination",
-    description:
-      "Paginate a large dataset with client-side page controls and state.",
-    Component: lazy(() => import("./Pagination")),
-  },
+
   {
     slug: "multi-step-form",
     title: "Multi Step Form",
@@ -39,36 +46,31 @@ export const machineCodingItems = [
   {
     slug: "traffic-light",
     title: "Traffic Light",
-    description:
-      "Implement traffic light with 3 states: red, yellow, green.",
+    description: "Implement traffic light with 3 states: red, yellow, green.",
     Component: lazy(() => import("./TrafficLight")),
   },
   {
     slug: "tic-tac-toe",
     title: "Tic Tac Toe",
-    description:
-      "Classic tic-tac-toe board with winner detection and reset.",
+    description: "Classic tic-tac-toe board with winner detection and reset.",
     Component: lazy(() => import("./Tic-Tac-Toe")),
   },
   {
     slug: "stop-watch",
     title: "Stopwatch",
-    description:
-      "Stopwatch with start, pause and reset using intervals.",
+    description: "Stopwatch with start, pause and reset using intervals.",
     Component: lazy(() => import("./Stopwatch")),
   },
   {
     slug: "memory-game",
     title: "Memory Game",
-    description:
-      "Flip cards to match pairs in a simple memory card game.",
+    description: "Flip cards to match pairs in a simple memory card game.",
     Component: lazy(() => import("./MemoryGame")),
   },
-   {
+  {
     slug: "widget-poll",
     title: "Widget Poll",
-    description:
-      "Flip cards to match pairs in a simple memory card game.",
+    description: "Flip cards to match pairs in a simple memory card game.",
     Component: lazy(() => import("./WidgetPoll")),
   },
   {
@@ -84,5 +86,12 @@ export const machineCodingItems = [
     description:
       "Visual exercise to practice layout, positioning and animations.",
     Component: lazy(() => import("./OverlappingCircles")),
+  },
+  {
+    slug: "c-shape",
+    title: "C Shape",
+    description:
+      "Interactive C-shaped grid where clicking each box highlights it, then resets the boxes sequentially in the order they were selected.",
+    Component: lazy(() => import("./CShape")),
   },
 ];

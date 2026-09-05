@@ -69,6 +69,18 @@ export const polyfillItems = [
 		Component: lazy(() => import("./EventEmitter")),
 	},
 	{
+		slug: "currying",
+		title: "Currying",
+		description: "Implement common currying and uncurrying patterns.",
+		Component: lazy(() => import("./Currying")),
+	},
+	{
+		slug: "retry-api-call",
+		title: "Retry API Call",
+		description: "Retry a failed API request up to a specified number of attempts.",
+		Component: lazy(() => import("./RetryApiCall")),
+	},
+	{
 		slug: "set-timeout",
 		title: "setTimout",
 		description:

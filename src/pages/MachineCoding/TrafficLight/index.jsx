@@ -32,7 +32,7 @@ const TrafficLight = () => {
 				}
 			});
 		}, LIGHT_DURATIONS[light]);
-		return () => clearInterval(timer);
+		return () => clearTimeout(timer);
 	}, [light]);
 	return (
 		<>

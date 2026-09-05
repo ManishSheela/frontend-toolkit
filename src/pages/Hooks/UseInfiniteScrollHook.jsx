@@ -6,19 +6,14 @@ import pageSource from "./UseInfiniteScrollHook.jsx?raw";
 
 // #region implementation
 export const useInfiniteScroll = (callback, Threshold = 20) => {
-	const callbackRef = useRef(callback);
-
-	useEffect(() => {
-		callbackRef.current = callback;
-	}, [callback]);
-
+	
 	const handleScroll = useCallback(
 		(e) => {
 			const { scrollHeight, scrollTop, clientHeight } = e.target;
 			const remainingArea = scrollHeight - (scrollTop + clientHeight);
 
 			if (remainingArea < Threshold) {
-				callbackRef.current();
+				callback();
 			}
 		},
 		[Threshold],

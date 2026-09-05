@@ -10,7 +10,6 @@ import pageSource from "./CustomCall.jsx?raw";
 import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 
 // #region implementation
-
 Function.prototype.myCall = function(obj, ...args){
 
 	if(typeof this !== 'function'){
@@ -37,7 +36,6 @@ function greet(city, country) {
 }
 
 const output = greet.myCall(person, 'Churu', 'India');
-
 // #endregion implementation
 
 
