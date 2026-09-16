@@ -6,39 +6,39 @@ import pageSource from "./UseKeyPressHook.jsx?raw";
 
 // #region implementation
 const useKeyPress = (targetKey) => {
-	const [pressed, setPressed] = useState(false);
+  const [pressed, setPressed] = useState(false);
 
-	useEffect(() => {
-		const down = (e) => e.key === targetKey && setPressed(true);
-		const up = (e) => e.key === targetKey && setPressed(false);
+  useEffect(() => {
+    const down = (e) => e.key === targetKey && setPressed(true);
+    const up = (e) => e.key === targetKey && setPressed(false);
 
-		window.addEventListener("keydown", down);
-		window.addEventListener("keyup", up);
+    window.addEventListener("keydown", down);
+    window.addEventListener("keyup", up);
 
-		return () => {
-			window.removeEventListener("keydown", down);
-			window.removeEventListener("keyup", up);
-		};
-	}, [targetKey]);
+    return () => {
+      window.removeEventListener("keydown", down);
+      window.removeEventListener("keyup", up);
+    };
+  }, [targetKey]);
 
-	return pressed;
+  return pressed;
 };
-// #endregion implementation
 
 const UseKeyPressHook = () => {
-	const eKey = useKeyPress("e");
-	const upKey = useKeyPress("ArrowUp");
-	return (
-		<>
-			<LearningBox>
-				<p className="text-white">{eKey ? "e is pressed" : "Press e"}</p>
-				<p className="text-white">
-					{upKey ? "ArrowUp is pressed" : "Press ArrowUp"}
-				</p>
-			</LearningBox>
-			<CodeDisplay codeString={extractSnippet(pageSource)} />
-		</>
-	);
+  const eKey = useKeyPress("e");
+  const upKey = useKeyPress("ArrowUp");
+  return (
+    <>
+      <LearningBox>
+        <p className="text-white">{eKey ? "e is pressed" : "Press e"}</p>
+        <p className="text-white">
+          {upKey ? "ArrowUp is pressed" : "Press ArrowUp"}
+        </p>
+      </LearningBox>
+      <CodeDisplay codeString={extractSnippet(pageSource)} />
+    </>
+  );
 };
 
 export default UseKeyPressHook;
+// #endregion implementation

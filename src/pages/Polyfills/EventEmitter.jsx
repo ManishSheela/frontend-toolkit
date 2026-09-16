@@ -1,119 +1,121 @@
 /* eslint-disable react/no-unescaped-entities */
+
 import { lazy } from "react";
 import LearningBox from "@/src/components/organisms/LearningBox";
 
-const CodeDisplay = lazy(() => import("@/src/components/molecules/CodeDisplay"));
+const CodeDisplay = lazy(
+  () => import("@/src/components/molecules/CodeDisplay"),
+);
 
 import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./EventEmitter.jsx?raw";
 
 // #region implementation
 class MyEventEmitter {
-	constructor() {
-		this.events = {};
-	}
+  constructor() {
+    this.events = new Map();
+  }
 
-	on(eventName, fn) {
-		if (!this.events[eventName]) {
-			this.events[eventName] = [];
-		}
-		this.events[eventName].push(fn);
+  on(eventName, listener) {
+    if (!this.events.has(eventName)) {
+      this.events.set(eventName, new Set());
+    }
 
-		return {
-			unsubscribe: () => {
-				const updatedFn = this.events[eventName].filter(
-					(listener) => listener !== fn,
-				);
-				this.events[eventName] = updatedFn;
-			},
-		};
-	}
+    this.events.get(eventName).add(listener);
+  }
 
-	emit(eventName, ...args) {
-		const allEvents = this.events[eventName];
-		if (allEvents) {
-			allEvents.forEach((fn) => {
-				fn(...args);
-			});
-		}
-	}
+  off(eventName, listener) {
+    const listeners = this.events.get(eventName);
+
+    if (!listeners) return;
+
+    listeners.delete(listener);
+
+    if (listeners.size === 0) {
+      this.events.delete(eventName);
+    }
+  }
+
+  emit(eventName, ...args) {
+    const listeners = this.events.get(eventName);
+
+    if (!listeners) return;
+
+    listeners.forEach((listener) => {
+      listener(...args);
+    });
+  }
 }
-// #endregion implementation
 
 const log = [];
 const emitter = new MyEventEmitter();
 
-const greet = (message) => log.push(`Greet: ${message}`);
-const farewell = (message) => log.push(`Farewell: ${message}`);
+const greet = (message) => {
+  log.push(`Greet: ${message}`);
+};
 
-const greetSub = emitter.on("hello", greet);
+const farewell = (message) => {
+  log.push(`Farewell: ${message}`);
+};
+
+emitter.on("hello", greet);
 emitter.on("goodbye", farewell);
 
 emitter.emit("hello", "Hello, World!");
 emitter.emit("goodbye", "Goodbye, World!");
 
-greetSub.unsubscribe();
+emitter.off("hello", greet);
 
 emitter.emit("hello", "This should not call greet");
+// #endregion implementation
 
 const EventEmitter = () => {
-	return (
-		<>
-			<LearningBox className="gap-2 shadow-xs text-white text-sm text-left">
-				<p>
-					<strong>Explanation:</strong>
-				</p>
-				<ul className="list-disc pl-5">
-					<li>
-						<code>EventEmitter</code> is a custom event handling class.
-					</li>
-					<li>
-						<code>constructor</code> initializes an empty object{" "}
-						<code>events</code> to store event names and their listeners.
-					</li>
-					<li>
-						<code>on(eventName, fn)</code>: Registers a listener <code>fn</code>{" "}
-						for a given <code>eventName</code>. Returns an{" "}
-						<code>unsubscribe</code> method to remove that specific listener
-						later.
-					</li>
-					<li>
-						<code>emit(eventName, ...args)</code>: Triggers all listeners for a
-						given <code>eventName</code>, passing in any additional arguments.
-					</li>
-					<li>
-						Example Usage:
-						<ul className="list-disc pl-5">
-							<li>
-								Two functions (<code>greet</code> and <code>farewell</code>) are
-								subscribed to <code>'hello'</code> and <code>'goodbye'</code>{" "}
-								events.
-							</li>
-							<li>
-								<code>emit('hello', 'Hello, World!')</code> calls{" "}
-								<code>greet</code> and logs a greeting.
-							</li>
-							<li>
-								<code>greetSub.unsubscribe()</code> removes the{" "}
-								<code>greet</code> listener.
-							</li>
-							<li>
-								Further <code>'hello'</code> emits won’t call <code>greet</code>{" "}
-								anymore.
-							</li>
-						</ul>
-					</li>
-				</ul>
-							<p>
-					<strong>Live example (log of emitted events):</strong>
-				</p>
-				{log.map((entry, i) => (
-					<p key={i}>{entry}</p>
-				))}
-			</LearningBox>
-			<CodeDisplay codeString={extractSnippet(pageSource)} />
-		</>
-	);
+  return (
+    <>
+      {" "}
+      <LearningBox className="gap-2 shadow-xs text-sm text-left text-white">
+        {" "}
+        <p>
+          {" "}
+          <strong>What is an EventEmitter?</strong>{" "}
+        </p>
+        <p>
+          An EventEmitter allows you to register functions for an event and
+          execute them when that event occurs.
+        </p>
+        <ul className="list-disc space-y-2 pl-5">
+          <li>
+            <code>on()</code> → Register a listener.
+          </li>
+
+          <li>
+            <code>off()</code> → Remove a listener.
+          </li>
+
+          <li>
+            <code>emit()</code> → Trigger all listeners for an event.
+          </li>
+        </ul>
+        <p>
+          <strong>Example flow:</strong>
+        </p>
+        <div className="rounded-lg bg-white/10 p-3 font-mono text-xs">
+          <p>on("hello", greet)</p>
+          <p>emit("hello", "Hello, World!")</p>
+          <p>off("hello", greet)</p>
+        </div>
+        <p>
+          <strong>Live output:</strong>
+        </p>
+        <div className="rounded-lg bg-white/10 p-3">
+          {log.map((entry, index) => (
+            <p key={index}>{entry}</p>
+          ))}
+        </div>
+      </LearningBox>
+      <CodeDisplay codeString={extractSnippet(pageSource)} />
+    </>
+  );
 };
 
 export default EventEmitter;

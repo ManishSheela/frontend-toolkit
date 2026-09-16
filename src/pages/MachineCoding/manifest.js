@@ -94,4 +94,18 @@ export const machineCodingItems = [
       "Interactive C-shaped grid where clicking each box highlights it, then resets the boxes sequentially in the order they were selected.",
     Component: lazy(() => import("./CShape")),
   },
+  {
+    slug: "ticket-booking",
+    title: "Ticket Booking",
+    description:
+      "Interactive C-shaped grid where clicking each box highlights it, then resets the boxes sequentially in the order they were selected.",
+    Component: lazy(() => import("./MovieTicketBooking/index")),
+  },
+  {
+    slug: "accessible-modal",
+    title: "Accessible Modal",
+    description:
+      "Build a keyboard-accessible modal with focus management, escape-to-close, and screen-reader-friendly behavior.",
+    Component: lazy(() => import("./AccessibleModal")),
+  },
 ];

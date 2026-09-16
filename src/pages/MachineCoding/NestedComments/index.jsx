@@ -44,7 +44,7 @@ const useComments = () => {
   const [comments, setComments] = useState(() => CommentsData);
 
   const addComment = (commentId, text) => {
-    if (commentId) {
+    if (commentId == null) {
       setComments((prev) => [{ text, id: Date.now(), replies: [] }, ...prev]);
     } else {
       setComments((prevComments) =>
@@ -168,7 +168,7 @@ const NestedComments = () => {
   const { comments, addComment, deleteComment, editComment } = useComments();
 
   const handleAddComment = (comment) => {
-    addComment(comment);
+    addComment(null, comment);
     setText("");
   };
   return (

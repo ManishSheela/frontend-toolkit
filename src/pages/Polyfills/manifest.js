@@ -81,6 +81,12 @@ export const polyfillItems = [
 		Component: lazy(() => import("./RetryApiCall")),
 	},
 	{
+		slug: "memoization",
+		title: "Memoization",
+		description: "Cache function results to avoid repeating expensive calculations.",
+		Component: lazy(() => import("./Memoization")),
+	},
+	{
 		slug: "set-timeout",
 		title: "setTimout",
 		description:
