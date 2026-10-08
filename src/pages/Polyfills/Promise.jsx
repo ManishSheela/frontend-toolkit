@@ -9,40 +9,88 @@ class MyPromise {
 	constructor(executor) {
 		this.state = "pending";
 		this.value = undefined;
-		this.callbacks = [];
+		this.handlers = [];
 
 		const resolve = (value) => {
 			if (this.state !== "pending") return;
+
 			this.state = "fulfilled";
 			this.value = value;
-			this.callbacks.forEach(({ onFulfilled }) => onFulfilled?.(value));
+
+			this.handlers.forEach((handler) => {
+				handler.onFulfilled?.(value);
+			});
 		};
 
 		const reject = (error) => {
 			if (this.state !== "pending") return;
+
 			this.state = "rejected";
 			this.value = error;
-			this.callbacks.forEach(({ onRejected }) => onRejected?.(error));
+
+			this.handlers.forEach((handler) => {
+				handler.onRejected?.(error);
+			});
 		};
 
-		try {
-			executor(resolve, reject);
-		} catch (error) {
-			reject(error);
-		}
+		executor(resolve, reject);
 	}
 
 	then(onFulfilled, onRejected) {
-		if (this.state === "fulfilled") {
-			setTimeout(() => onFulfilled?.(this.value), 0);
-		} else if (this.state === "rejected") {
-			setTimeout(() => onRejected?.(this.value), 0);
-		} else {
-			this.callbacks.push({ onFulfilled, onRejected });
-		}
-		return this;
+		return new MyPromise((resolve, reject) => {
+
+			const handleFulfilled = (value) => {
+				try {
+					const result = onFulfilled
+						? onFulfilled(value)
+						: value;
+
+					resolve(result);
+				} catch (error) {
+					reject(error);
+				}
+			};
+
+			const handleRejected = (error) => {
+				try {
+					if (onRejected) {
+						const result = onRejected(error);
+						resolve(result);
+					} else {
+						reject(error);
+					}
+				} catch (error) {
+					reject(error);
+				}
+			};
+
+			if (this.state === "fulfilled") {
+				handleFulfilled(this.value);
+			}
+
+			if (this.state === "rejected") {
+				handleRejected(this.value);
+			}
+
+			if (this.state === "pending") {
+				this.handlers.push({
+					onFulfilled: handleFulfilled,
+					onRejected: handleRejected,
+				});
+			}
+		});
 	}
 }
+
+const p = new MyPromise((resolve, reject) => {
+	setTimeout(() => reject('manish'), 1000)
+})
+
+p.then((value) => {
+	console.log(value)
+}, (err) => {
+	console.log(err, 'err')
+})
 // #endregion implementation
 
 const Promise = () => {

@@ -9,12 +9,38 @@ import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./CustomReduce.jsx?raw";
 
 // #region implementation
-Array.prototype.myReduce = function (callback, initialValue = this[0]) {
-	let acc = initialValue;
-	for (let i = 0; i < this.length; i++) {
-		acc = callback(acc, this[i], i);
-	}
-	return acc;
+Array.prototype.myReduce = function (callbackFn, initialValue) {
+  if (typeof callbackFn !== 'function') {
+    throw new Error('function Error');
+  }
+
+  const arr = this;
+
+  let acc;
+  let index = 0;
+
+  if (arguments.length >= 2) {
+    acc = initialValue;
+  } else {
+    while (index < arr.length && !(index in arr)) {
+      index++;
+    }
+
+    if (index === arr.length) {
+      throw new TypeError('Reduce of empty array with no initial value');
+    }
+
+    acc = arr[index];
+    index++;
+  }
+
+  for (let i = index; i < arr.length; i++) {
+
+      acc = callbackFn(acc, arr[i], i, arr);
+
+  }
+
+  return acc;
 };
 
 const inputArray = [1, 2, 3, 4];

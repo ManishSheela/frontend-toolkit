@@ -11,14 +11,19 @@ import pageSource from "./FlattenArray.jsx?raw";
 
 
 // #region implementation
-const flattenArray = (arr, result = []) => {
-	if (Array.isArray(arr)) {
-		for (const key of arr) {
-			flattenArray(key, result);
+const flattenArray = (arr, depth = Infinity, currentDepth = 0) => {
+	const result = [];
+
+	for (const item of arr) {
+		if (Array.isArray(item) && currentDepth < depth) {
+			result.push(
+				...flattenArray(item, depth, currentDepth + 1)
+			);
+		} else {
+			result.push(item);
 		}
-	} else {
-		result.push(arr);
 	}
+
 	return result;
 };
 
@@ -90,7 +95,7 @@ const FlattenArray = () => {
 						into a flat array.
 					</li>
 				</ul>
-							<p>
+				<p>
 					<strong>Live example:</strong>
 				</p>
 				<p>Input: {JSON.stringify(inputArray)}</p>

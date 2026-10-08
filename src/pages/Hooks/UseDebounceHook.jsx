@@ -5,15 +5,35 @@ import { extractSnippet } from "@/src/utils/extractCodeSnippet";
 import pageSource from "./UseDebounceHook.jsx?raw";
 
 // #region implementation
+
+function debounce(callback, wait) {
+	let timer = null;
+	let controller = null;
+
+	return function (...args) {
+
+		clearTimeout(timer);
+
+		controller?.abort();
+
+		controller = new AbortController();
+
+		timer = setTimeout(() => {
+			callback(...args, controller.signal);
+		}, wait);
+	};
+}
+
 const useDebounce = (value, delay) => {
 	const [debouncedValue, setDebouncedValue] = useState(value);
 
 	useEffect(() => {
-		const handler = setTimeout(() => {
+		const timer = setTimeout(() => {
 			setDebouncedValue(value);
 		}, delay);
-		return () => clearTimeout(handler);
-	}, [delay, value]);
+
+		return () => clearTimeout(timer);
+	}, [value, delay]);
 
 	return debouncedValue;
 };
@@ -28,7 +48,7 @@ const UseDebounceHook = () => {
 		<>
 			<LearningBox className="text-white gap-4">
 				<input
-					
+
 					type="text"
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
